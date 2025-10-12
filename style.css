@@ -103,7 +103,6 @@ body {
 }
 
 .logo { display: flex; align-items: center; gap: 12px }
-/* MODIFIED: High-contrast gradient background for the logo */
 .logo-mark-bg {
   width: 48px;
   height: 48px;
@@ -310,4 +309,5 @@ h2 { font-size: 40px; }
     padding: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
   .nav-list.show { display: flex; flex-direction: column; gap: 5px }
+
 }
