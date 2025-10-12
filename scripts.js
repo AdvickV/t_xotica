@@ -1,6 +1,4 @@
-// scripts.js — small UI helpers: nav toggle, countdown, toggle details, reveal on scroll
 document.addEventListener('DOMContentLoaded', function () {
-  // nav toggle
   document.querySelectorAll('.nav-toggle').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const navList = document.querySelector('.nav-list');
@@ -8,13 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // set copyright years
   const y = new Date().getFullYear();
   document.getElementById('year') && (document.getElementById('year').textContent = y);
   document.getElementById('year2') && (document.getElementById('year2').textContent = y);
   document.getElementById('year3') && (document.getElementById('year3').textContent = y);
 
-  // simple countdown placeholder (update target date as needed)
   const target = new Date('2025-11-28T09:00:00');
   const cd = document.getElementById('countdown');
   if (cd) {
@@ -35,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const i = setInterval(tick,1000);
   }
 
-  // toggle event details
   document.querySelectorAll('.toggle-details').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const card = btn.closest('.event-card');
@@ -45,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // MODIFIED: High-performance reveal on scroll using CSS classes
   const obs = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -58,4 +52,5 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.reveal-on-scroll').forEach(el => {
     obs.observe(el);
   });
+
 });
