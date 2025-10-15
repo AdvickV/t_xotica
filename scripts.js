@@ -1,4 +1,6 @@
+
 document.addEventListener('DOMContentLoaded', function () {
+
   document.querySelectorAll('.nav-toggle').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const navList = document.querySelector('.nav-list');
@@ -31,12 +33,32 @@ document.addEventListener('DOMContentLoaded', function () {
     const i = setInterval(tick,1000);
   }
 
-  document.querySelectorAll('.toggle-details').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const card = btn.closest('.event-card');
-      const details = card.querySelector('.event-details');
+  const eventsContainer = document.querySelector('.events-container');
+  const allEventCards = document.querySelectorAll('.event-card');
+
+  allEventCards.forEach(card => {
+    const btn = card.querySelector('.toggle-details');
+    const details = card.querySelector('.event-details');
+
+    btn.addEventListener('click', () => {
+      const isOpening = !details.classList.contains('open');
+      allEventCards.forEach(otherCard => {
+        if (otherCard !== card) {
+          otherCard.querySelector('.event-details').classList.remove('open');
+          otherCard.querySelector('.toggle-details').textContent = 'More';
+        }
+      });
+
       details.classList.toggle('open');
-      btn.textContent = details.classList.contains('open') ? 'Less' : 'More';
+      btn.textContent = isOpening ? 'Less' : 'More';
+
+      if (eventsContainer) {
+        if (isOpening) {
+          eventsContainer.classList.add('has-expanded-card');
+        } else {
+          eventsContainer.classList.remove('has-expanded-card');
+        }
+      }
     });
   });
 
@@ -52,5 +74,4 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.reveal-on-scroll').forEach(el => {
     obs.observe(el);
   });
-
 });
