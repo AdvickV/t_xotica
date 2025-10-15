@@ -247,10 +247,36 @@ h2 { font-size: 40px; }
 .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: left; }
 .faq-item h4 { margin: 0 0 8px; color: var(--accent-1); font-size: 20px; }
 .about-page { max-width: 1200px; margin: 40px auto; padding-bottom: 30px; }
-.events-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 40px; }
-.event-card { display: flex; flex-direction: column; scroll-margin-top: 120px; }
-.event-card .poster img { width: 100%; height: 280px; object-fit: cover; }
-.event-body { padding: 32px; }
+
+.events-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+  transition: grid-template-columns 0.5s ease;
+}
+/* NEW: Rule to handle grid change on card expansion */
+.events-container.has-expanded-card {
+  grid-template-columns: 1fr;
+}
+.event-card {
+  display: flex;
+  flex-direction: column;
+  scroll-margin-top: 120px;
+}
+.event-actions {
+    margin-top: auto;
+    padding-top: 16px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.event-body {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
 .event-body h2 { margin-top: 0; }
 .event-details { margin-top: 20px; display: none; background: rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 25px; }
 .event-details.open { display: block }
@@ -259,7 +285,9 @@ h2 { font-size: 40px; }
 @media (max-width: 920px) {
   .hero-inner, .register-page .big-hero { grid-template-columns: 1fr; gap: 24px; }
   .faq-grid { grid-template-columns: 1fr; }
-  .events-container { grid-template-columns: 1fr; }
+  .events-container {
+    grid-template-columns: 1fr;
+  }
   .hero { min-height: auto; padding: 60px 0 30px; }
   .hero-title { font-size: 48px; }
   h2 { font-size: 32px; }
@@ -305,9 +333,8 @@ h2 { font-size: 40px; }
   .nav-toggle { display: block }
   .nav-list {
     display: none; position: absolute; top: calc(100% + 10px); right: 16px;
-    background: var(--bg-1); border: 1px solid var(--glass-border); border-radius: 20px;
+    background: var(--bg-1); border: 1px solid var(--glass-border); border-radius: 50px;
     padding: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
   .nav-list.show { display: flex; flex-direction: column; gap: 5px }
-
 }
