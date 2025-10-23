@@ -83,26 +83,48 @@ document.addEventListener('DOMContentLoaded', function () {
   const prevBtn = document.querySelector('.slider-btn.prev');
   const nextBtn = document.querySelector('.slider-btn.next');
   let currentIndex = 0;
+  let autoSlideInterval; // Variable to hold the interval ID
 
   function updateSlider() {
       if (!slider || slides.length === 0) return;
+      // Ensure currentIndex is within bounds
+      if (currentIndex < 0) {
+          currentIndex = slides.length - 1;
+      } else if (currentIndex >= slides.length) {
+          currentIndex = 0;
+      }
       const slideWidth = slides[0].clientWidth;
       slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
   }
 
+  function startAutoSlide() {
+      if (autoSlideInterval) clearInterval(autoSlideInterval); // Clear existing interval if any
+      autoSlideInterval = setInterval(() => {
+          currentIndex++;
+          updateSlider();
+      }, 3000); // Change slide every 3 seconds
+  }
+
+  function stopAutoSlide() {
+      clearInterval(autoSlideInterval);
+  }
+
   if (prevBtn && nextBtn && slides.length > 0) {
       prevBtn.addEventListener('click', () => {
-          currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+          stopAutoSlide(); // Stop auto slide on manual interaction
+          currentIndex--;
           updateSlider();
       });
 
       nextBtn.addEventListener('click', () => {
-          currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+          stopAutoSlide(); // Stop auto slide on manual interaction
+          currentIndex++;
           updateSlider();
       });
 
       updateSlider();
       window.addEventListener('resize', updateSlider);
+      startAutoSlide(); // Start auto sliding initially
   }
 
 });
