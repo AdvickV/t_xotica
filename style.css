@@ -241,16 +241,7 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
 .sponsor-strip { text-align: center; padding: 40px 0; }
 .sponsor-strip h3 { margin-bottom: 4px; }
 .sponsor-strip p { font-size: 14px; }
-
-.register-page .big-hero {
-  max-width: 1200px;
-  /* MODIFIED: Increased margin for more space */
-  margin: 80px auto;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 32px;
-}
+.register-page .big-hero { max-width: 1200px; margin: 80px auto; padding: 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px; }
 .note { margin-top: 24px; }
 .quick-list li {
   display: flex;
@@ -274,6 +265,24 @@ h2 { font-size: 40px; }
 .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: left; }
 .faq-item h4 { margin: 0 0 8px; color: var(--accent-1); font-size: 20px; }
 .about-page { max-width: 1200px; margin: 40px auto; padding-bottom: 30px; }
+
+/* --- Committee Slider Styles --- */
+.committee-slider-section { margin-bottom: 32px; padding: 40px; }
+.committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
+.slider-container { position: relative; width: 100%; max-width: 400px; margin: 0 auto; overflow: hidden; border-radius: 20px;}
+.slider { display: flex; transition: transform 0.5s ease-in-out; }
+.slide { flex: 0 0 100%; text-align: center; }
+.slide img { width: 100%; height: auto; display: block; border-radius: 15px; margin-bottom: 10px; }
+.caption { color: var(--muted); font-size: 16px; margin-top: 5px; }
+.slider-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border);
+  color: white; font-size: 24px; padding: 8px 12px; border-radius: 50%;
+  cursor: pointer; z-index: 10; transition: background-color 0.3s ease;
+}
+.slider-btn:hover { background-color: rgba(255, 255, 255, 0.2); }
+.prev { left: 10px; }
+.next { right: 10px; }
 
 .events-container {
   display: grid;
@@ -311,7 +320,8 @@ h2 { font-size: 40px; }
   border-radius: 25px;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+  /* MODIFIED: Faster animation speed */
+  transition: max-height 0.35s ease-out, padding 0.35s ease-out;
 }
 .event-details.open {
   max-height: 1000px;
@@ -360,9 +370,11 @@ h2 { font-size: 40px; }
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: flex-start; /* MODIFIED: Align stats to top */
   }
   .stat {
-      align-items: center;
+      align-items: flex-start; /* MODIFIED: Left-align stat text */
+      text-align: left;
   }
   .stat .num {
       font-size: 24px;
@@ -381,4 +393,7 @@ h2 { font-size: 40px; }
     padding: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
   .nav-list.show { display: flex; flex-direction: column; gap: 5px }
+
+  .committee-slider-section { padding: 30px; }
+  .slider-container { max-width: 90%; }
 }
