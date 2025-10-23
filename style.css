@@ -266,7 +266,6 @@ h2 { font-size: 40px; }
 .faq-item h4 { margin: 0 0 8px; color: var(--accent-1); font-size: 20px; }
 .about-page { max-width: 1200px; margin: 40px auto; padding-bottom: 30px; }
 
-/* --- Committee Slider Styles --- */
 .committee-slider-section { margin-bottom: 32px; padding: 40px; }
 .committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
 .slider-container { position: relative; width: 100%; max-width: 400px; margin: 0 auto; overflow: hidden; border-radius: 20px;}
@@ -276,13 +275,15 @@ h2 { font-size: 40px; }
 .caption { color: var(--muted); font-size: 16px; margin-top: 5px; }
 .slider-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border);
-  color: white; font-size: 24px; padding: 8px 12px; border-radius: 50%;
-  cursor: pointer; z-index: 10; transition: background-color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.2); border: none;
+  color: white; font-size: 28px; font-weight: bold;
+  padding: 10px 15px; border-radius: 50%;
+  cursor: pointer; z-index: 10; transition: background-color 0.3s ease, transform 0.3s ease;
+  line-height: 1; /* Ensure vertical centering */
 }
-.slider-btn:hover { background-color: rgba(255, 255, 255, 0.2); }
-.prev { left: 10px; }
-.next { right: 10px; }
+.slider-btn:hover { background-color: rgba(255, 255, 255, 0.3); transform: translateY(-50%) scale(1.1); }
+.prev { left: 15px; }
+.next { right: 15px; }
 
 .events-container {
   display: grid;
@@ -320,7 +321,6 @@ h2 { font-size: 40px; }
   border-radius: 25px;
   max-height: 0;
   overflow: hidden;
-  /* MODIFIED: Faster animation speed */
   transition: max-height 0.35s ease-out, padding 0.35s ease-out;
 }
 .event-details.open {
@@ -369,11 +369,11 @@ h2 { font-size: 40px; }
   .stats {
       gap: 20px;
       flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start; /* MODIFIED: Align stats to top */
+      justify-content: flex-start; 
+      align-items: flex-start;
   }
   .stat {
-      align-items: flex-start; /* MODIFIED: Left-align stat text */
+      align-items: flex-start;
       text-align: left;
   }
   .stat .num {
