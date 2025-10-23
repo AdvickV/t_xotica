@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const i = setInterval(tick,1000);
   }
 
+  const eventsContainer = document.querySelector('.events-container');
   const allEventCards = document.querySelectorAll('.event-card');
 
   allEventCards.forEach(card => {
@@ -45,8 +46,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         allEventCards.forEach(otherCard => {
             otherCard.classList.remove('is-open');
-            otherCard.querySelector('.event-details').classList.remove('open');
-            otherCard.querySelector('.toggle-details').textContent = 'More';
+            const otherDetails = otherCard.querySelector('.event-details');
+            if (otherDetails) {
+                 otherDetails.classList.remove('open');
+            }
+            const otherBtn = otherCard.querySelector('.toggle-details');
+             if(otherBtn) {
+                 otherBtn.textContent = 'More';
+             }
         });
 
         if (isOpening) {
@@ -70,4 +77,32 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.reveal-on-scroll').forEach(el => {
     obs.observe(el);
   });
+
+  const slider = document.querySelector('.slider');
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.querySelector('.slider-btn.prev');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  let currentIndex = 0;
+
+  function updateSlider() {
+      if (!slider || slides.length === 0) return;
+      const slideWidth = slides[0].clientWidth;
+      slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+
+  if (prevBtn && nextBtn && slides.length > 0) {
+      prevBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+          updateSlider();
+      });
+
+      nextBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+          updateSlider();
+      });
+
+      updateSlider();
+      window.addEventListener('resize', updateSlider);
+  }
+
 });
