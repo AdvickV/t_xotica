@@ -337,8 +337,7 @@ h2 { font-size: 40px; }
   flex: 0 0 200px;
   text-align: center;
   padding: 0 10px;
-  /* Removed fixed opacity */
-  transition: opacity 0.5s ease; /* Keep transition if needed for hover */
+  transition: opacity 0.5s ease;
 }
 .slide img {
   width: 100%;
@@ -510,9 +509,8 @@ h2 { font-size: 40px; }
   .slide {
       flex: 0 0 150px;
       padding: 0 5px;
-      /* Removed opacity override for mobile */
   }
-  /* Removed mobile specific nth-child opacity */
+
   .slide img {
       height: 150px;
       max-height: none;
