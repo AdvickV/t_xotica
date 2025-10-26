@@ -78,53 +78,74 @@ document.addEventListener('DOMContentLoaded', function () {
     obs.observe(el);
   });
 
+  const sliderContainer = document.querySelector('.slider-container');
   const slider = document.querySelector('.slider');
   const slides = document.querySelectorAll('.slide');
   const prevBtn = document.querySelector('.slider-btn.prev');
   const nextBtn = document.querySelector('.slider-btn.next');
+  let isManualControl = false;
   let currentIndex = 0;
-  let autoSlideInterval; // Variable to hold the interval ID
+  const slideCount = slides.length / 2; 
+  let autoSlideInterval;
 
-  function updateSlider() {
-      if (!slider || slides.length === 0) return;
-      // Ensure currentIndex is within bounds
-      if (currentIndex < 0) {
-          currentIndex = slides.length - 1;
-      } else if (currentIndex >= slides.length) {
-          currentIndex = 0;
-      }
-      const slideWidth = slides[0].clientWidth;
-      slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  function updateManualSlider() {
+    if (!slider || !slides || slides.length === 0) return;
+    const slideWidth = slides[0].clientWidth;
+    slider.style.transition = 'transform 0.5s ease-in-out'; 
+    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+
+  function pauseMarquee() {
+    if (slider) {
+      slider.style.animationPlayState = 'paused';
+    }
+    isManualControl = true;
   }
 
   function startAutoSlide() {
-      if (autoSlideInterval) clearInterval(autoSlideInterval); // Clear existing interval if any
-      autoSlideInterval = setInterval(() => {
-          currentIndex++;
-          updateSlider();
-      }, 3000); // Change slide every 3 seconds
+    if (slider) {
+        slider.style.animationPlayState = 'running';
+    }
+    isManualControl = false;
+    // Optional: Reset animation or position if needed after manual interaction
   }
 
-  function stopAutoSlide() {
-      clearInterval(autoSlideInterval);
+
+  if (sliderContainer && slider && prevBtn && nextBtn && slides.length > 0) {
+    prevBtn.addEventListener('click', () => {
+      pauseMarquee();
+      currentIndex--;
+      if (currentIndex < 0) {
+        slider.style.transition = 'none'; 
+        currentIndex = slideCount - 1;
+        const slideWidth = slides[0].clientWidth;
+        slider.style.transform = `translateX(-${(currentIndex + slideCount) * slideWidth}px)`;
+        slider.offsetHeight; 
+        updateManualSlider();
+      } else {
+        updateManualSlider();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      pauseMarquee();
+      currentIndex++;
+       if (currentIndex >= slideCount) {
+        slider.style.transition = 'none'; 
+        const slideWidth = slides[0].clientWidth;
+        slider.style.transform = `translateX(-${(currentIndex - slideCount) * slideWidth}px)`;
+        slider.offsetHeight; 
+        currentIndex = 0; 
+        updateManualSlider();
+      } else {
+          updateManualSlider();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (isManualControl) {
+        updateManualSlider(); 
+      }
+    });
   }
-
-  if (prevBtn && nextBtn && slides.length > 0) {
-      prevBtn.addEventListener('click', () => {
-          stopAutoSlide(); // Stop auto slide on manual interaction
-          currentIndex--;
-          updateSlider();
-      });
-
-      nextBtn.addEventListener('click', () => {
-          stopAutoSlide(); // Stop auto slide on manual interaction
-          currentIndex++;
-          updateSlider();
-      });
-
-      updateSlider();
-      window.addEventListener('resize', updateSlider);
-      startAutoSlide(); // Start auto sliding initially
-  }
-
 });
