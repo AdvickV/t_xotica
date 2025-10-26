@@ -1,141 +1,150 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const navToggles = document.querySelectorAll(".nav-toggle");
-  navToggles.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const navList = document.querySelector(".nav-list");
-      if (navList) navList.classList.toggle("show");
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.nav-toggle').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const navList = document.querySelector('.nav-list');
+      navList.classList.toggle('show');
     });
   });
 
-  const year = new Date().getFullYear();
-  ["year", "year2", "year3"].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = year;
-  });
+  const y = new Date().getFullYear();
+  document.getElementById('year') && (document.getElementById('year').textContent = y);
+  document.getElementById('year2') && (document.getElementById('year2').textContent = y);
+  document.getElementById('year3') && (document.getElementById('year3').textContent = y);
 
-  const countdownElement = document.getElementById("countdown");
-  const targetDate = new Date("2025-11-28T09:00:00");
-
-  if (countdownElement) {
-    const updateCountdown = () => {
+  const target = new Date('2025-11-28T09:00:00');
+  const cd = document.getElementById('countdown');
+  if (cd) {
+    const tick = () => {
       const now = new Date();
-      const diff = Math.max(0, targetDate - now);
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, "0");
-      const mins = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, "0");
-      const secs = String(Math.floor((diff / 1000) % 60)).padStart(2, "0");
-      countdownElement.innerHTML = `
-        <div class="days">${days} <span class="label">Days</span></div>
-        <div class="time">${hours}:${mins}:${secs}</div>
-      `;
-      if (diff <= 0) clearInterval(interval);
+      const diff = Math.max(0, target - now);
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hrs = String(Math.floor((diff/(1000*60*60))%24)).padStart(2,'0');
+      const mins = String(Math.floor((diff/(1000*60))%60)).padStart(2,'0');
+      const secs = String(Math.floor((diff/1000)%60)).padStart(2,'0');
+      
+      cd.innerHTML = `<div class="days">${days} <span class="label">Days</span></div>
+                      <div class="time">${hrs}:${mins}:${secs}</div>`;
+
+      if (diff<=0) clearInterval(i);
     };
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
+    tick();
+    const i = setInterval(tick,1000);
   }
 
-  const eventCards = document.querySelectorAll(".event-card");
-  eventCards.forEach((card) => {
-    const toggle = card.querySelector(".toggle-details");
-    const details = card.querySelector(".event-details");
-    if (toggle && details) {
-      toggle.addEventListener("click", (e) => {
+  const eventsContainer = document.querySelector('.events-container');
+  const allEventCards = document.querySelectorAll('.event-card');
+
+  allEventCards.forEach(card => {
+    const btn = card.querySelector('.toggle-details');
+    const details = card.querySelector('.event-details');
+
+    if (btn && details) {
+      btn.addEventListener('click', (e) => {
         e.preventDefault();
-        const isOpening = !card.classList.contains("is-open");
-        eventCards.forEach((other) => {
-          other.classList.remove("is-open");
-          const od = other.querySelector(".event-details");
-          if (od) od.classList.remove("open");
-          const ob = other.querySelector(".toggle-details");
-          if (ob) ob.textContent = "More";
+        
+        const isOpening = !card.classList.contains('is-open');
+
+        allEventCards.forEach(otherCard => {
+            otherCard.classList.remove('is-open');
+            const otherDetails = otherCard.querySelector('.event-details');
+            if (otherDetails) {
+                 otherDetails.classList.remove('open');
+            }
+            const otherBtn = otherCard.querySelector('.toggle-details');
+             if(otherBtn) {
+                 otherBtn.textContent = 'More';
+             }
         });
+
         if (isOpening) {
-          card.classList.add("is-open");
-          details.classList.add("open");
-          toggle.textContent = "Less";
-          setTimeout(() => {
-            card.scrollIntoView({ behavior: "smooth", block: "start" });
-          }, 120);
+          card.classList.add('is-open');
+          details.classList.add('open');
+          btn.textContent = 'Less';
         }
       });
     }
   });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.1});
 
-  document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
-    observer.observe(el);
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+    obs.observe(el);
   });
 
-  const sliderContainer = document.querySelector(".slider-container");
-  const slider = document.querySelector(".slider");
-  const slides = document.querySelectorAll(".slide");
-  const prevBtn = document.querySelector(".slider-btn.prev");
-  const nextBtn = document.querySelector(".slider-btn.next");
+  const sliderContainer = document.querySelector('.slider-container');
+  const slider = document.querySelector('.slider');
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.querySelector('.slider-btn.prev');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  let isManualControl = false;
+  let currentIndex = 0;
+  const slideCount = slides.length / 2; 
+  let autoSlideInterval;
 
-  if (!slider || !slides.length) return;
+  function updateManualSlider() {
+    if (!slider || !slides || slides.length === 0) return;
+    const slideWidth = slides[0].clientWidth;
+    slider.style.transition = 'transform 0.5s ease-in-out'; 
+    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
 
-  let isManual = false;
-  let index = 0;
-  const slideCount = Math.floor(slides.length / 2) || slides.length;
+  function pauseMarquee() {
+    if (slider) {
+      slider.style.animationPlayState = 'paused';
+    }
+    isManualControl = true;
+  }
 
-  const getSlideWidth = () => (slides[0] ? slides[0].getBoundingClientRect().width : 0);
+  function startAutoSlide() {
+    if (slider) {
+        slider.style.animationPlayState = 'running';
+    }
+    isManualControl = false;
+  }
 
-  const updateSlider = () => {
-    if (!slider || !slides.length) return;
-    const width = getSlideWidth();
-    slider.style.transition = "transform 0.5s ease-in-out";
-    slider.style.transform = `translateX(-${index * width}px)`;
-  };
 
-  const pauseMarquee = () => {
-    if (slider) slider.style.animationPlayState = "paused";
-    isManual = true;
-  };
-
-  if (sliderContainer && slider && prevBtn && nextBtn) {
-    prevBtn.addEventListener("click", () => {
+  if (sliderContainer && slider && prevBtn && nextBtn && slides.length > 0) {
+    prevBtn.addEventListener('click', () => {
       pauseMarquee();
-      index--;
-      if (index < 0) {
-        const width = getSlideWidth();
-        slider.style.transition = "none";
-        index = slideCount - 1;
-        slider.style.transform = `translateX(-${(index + slideCount) * width}px)`;
-        slider.offsetHeight;
-        updateSlider();
+      currentIndex--;
+      if (currentIndex < 0) {
+        slider.style.transition = 'none'; 
+        currentIndex = slideCount - 1;
+        const slideWidth = slides[0].clientWidth;
+        slider.style.transform = `translateX(-${(currentIndex + slideCount) * slideWidth}px)`;
+        slider.offsetHeight; 
+        updateManualSlider();
       } else {
-        updateSlider();
+        updateManualSlider();
       }
     });
 
-    nextBtn.addEventListener("click", () => {
+    nextBtn.addEventListener('click', () => {
       pauseMarquee();
-      index++;
-      if (index >= slideCount) {
-        const width = getSlideWidth();
-        slider.style.transition = "none";
-        slider.style.transform = `translateX(-${(index - slideCount) * width}px)`;
-        slider.offsetHeight;
-        index = 0;
-        updateSlider();
+      currentIndex++;
+       if (currentIndex >= slideCount) {
+        slider.style.transition = 'none'; 
+        const slideWidth = slides[0].clientWidth;
+        slider.style.transform = `translateX(-${(currentIndex - slideCount) * slideWidth}px)`;
+        slider.offsetHeight; 
+        currentIndex = 0; 
+        updateManualSlider();
       } else {
-        updateSlider();
+          updateManualSlider();
       }
     });
 
-    window.addEventListener("resize", () => {
-      if (isManual) updateSlider();
+    window.addEventListener('resize', () => {
+      if (isManualControl) {
+        updateManualSlider(); 
+      }
     });
   }
 });
