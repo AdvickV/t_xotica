@@ -83,4 +83,4 @@ document.addEventListener('DOMContentLoaded', function () {
     obs.observe(el);
   });
 
-});
+}); // Removed slider logic
