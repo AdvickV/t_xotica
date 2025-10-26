@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const i = setInterval(tick,1000);
   }
 
-  const eventsContainer = document.querySelector('.events-container');
+  const eventsContainer = document.querySelector('.events-container'); 
   const allEventCards = document.querySelectorAll('.event-card');
 
   allEventCards.forEach(card => {
@@ -42,29 +42,25 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         
-        const isOpening = !details.classList.contains('open'); // Check BEFORE toggling
+        const isOpening = !details.classList.contains('open'); 
 
-        // Close all other open cards first
         allEventCards.forEach(otherCard => {
           if (otherCard !== card) {
             const otherDetails = otherCard.querySelector('.event-details');
             if (otherDetails && otherDetails.classList.contains('open')) {
               otherDetails.classList.remove('open');
-              otherCard.querySelector('.toggle-details').textContent = 'More';
-              otherCard.classList.remove('is-open'); // Remove is-open from others
+              const otherBtn = otherCard.querySelector('.toggle-details');
+               if(otherBtn) {
+                   otherBtn.textContent = 'More';
+               }
+              otherCard.classList.remove('is-open'); 
             }
           }
         });
 
-        // Toggle the current card's details
         details.classList.toggle('open');
         btn.textContent = isOpening ? 'Less' : 'More';
-        card.classList.toggle('is-open', isOpening); // Add/Remove is-open on current
-
-        // Adjust the parent grid container
-        if (eventsContainer) {
-           eventsContainer.classList.toggle('has-expanded-card', isOpening);
-        }
+        card.classList.toggle('is-open', isOpening); 
       });
     }
   });
@@ -83,4 +79,38 @@ document.addEventListener('DOMContentLoaded', function () {
     obs.observe(el);
   });
 
-}); // Removed slider logic
+  const sliderContainer = document.querySelector('.slider-container');
+  const slider = document.querySelector('.slider');
+  const slides = document.querySelectorAll('.slide');
+  let isManualControl = false;
+  let currentIndex = 0;
+  const slideCount = slides.length / 2; 
+  let autoSlideInterval;
+
+  function updateManualSlider() {
+    if (!slider || !slides || slides.length === 0) return;
+    const slideWidth = slides[0].clientWidth;
+    slider.style.transition = 'transform 0.5s ease-in-out'; 
+    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+
+  function pauseMarquee() {
+    if (slider) {
+      slider.style.animationPlayState = 'paused';
+    }
+    isManualControl = true;
+  }
+
+  function startAutoSlide() {
+    if (slider) {
+        slider.style.animationPlayState = 'running';
+    }
+    isManualControl = false;
+  }
+
+
+  if (sliderContainer && slider && slides.length > 0) {
+    window.addEventListener('resize', () => {
+    });
+  }
+});
