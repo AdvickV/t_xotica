@@ -43,6 +43,7 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: -1;
+  overflow: hidden; 
 }
 
 @keyframes float {
@@ -266,7 +267,6 @@ h2 { font-size: 40px; }
 .faq-item h4 { margin: 0 0 8px; color: var(--accent-1); font-size: 20px; }
 .about-page { max-width: 1200px; margin: 40px auto; padding-bottom: 30px; }
 
-/* --- Committee Slider Styles --- */
 .committee-slider-section { margin-bottom: 48px; padding: 40px; }
 .committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
 .slider-container { position: relative; width: 100%; max-width: 400px; margin: 0 auto; overflow: hidden; border-radius: 20px;}
@@ -281,8 +281,8 @@ h2 { font-size: 40px; }
   width: 2400%; 
   animation: marquee 40s linear infinite; 
 }
-.slide { flex: 0 0 calc(100% / 24); text-align: center; } 
-.slide img { width: 100%; height: auto; display: block; border-radius: 15px; margin-bottom: 10px; }
+.slide { flex: 0 0 calc(100% / 24); text-align: center; padding: 0 10px;}
+.slide img { width: 100%; height: auto; display: block; border-radius: 15px; margin-bottom: 10px; aspect-ratio: 1 / 1; object-fit: cover;}
 .caption { color: var(--muted); font-size: 16px; margin-top: 5px; }
 
 .slider-btn {
@@ -381,7 +381,7 @@ h2 { font-size: 40px; }
   .stats {
       gap: 20px;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: flex-start; 
       align-items: flex-start;
   }
   .stat {
@@ -411,5 +411,13 @@ h2 { font-size: 40px; }
   .slider-btn { font-size: 24px; padding: 8px 12px; }
   .prev { left: 10px; }
   .next { right: 10px; }
-}
 
+  .quick-list li {
+      flex-wrap: wrap; 
+  }
+  .quick-list li span {
+      flex-basis: 100%; 
+      text-align: left; 
+      margin-top: 4px;
+  }
+}
