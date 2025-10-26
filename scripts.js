@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.nav-toggle').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const navList = document.querySelector('.nav-list');
-      navList.classList.toggle('show');
+      navList && navList.classList.toggle('show');
     });
   });
 
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const hrs = String(Math.floor((diff/(1000*60*60))%24)).padStart(2,'0');
       const mins = String(Math.floor((diff/(1000*60))%60)).padStart(2,'0');
       const secs = String(Math.floor((diff/1000)%60)).padStart(2,'0');
-      
+
       cd.innerHTML = `<div class="days">${days} <span class="label">Days</span></div>
                       <div class="time">${hrs}:${mins}:${secs}</div>`;
 
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const i = setInterval(tick,1000);
   }
 
-  const eventsContainer = document.querySelector('.events-container');
   const allEventCards = document.querySelectorAll('.event-card');
 
   allEventCards.forEach(card => {
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (btn && details) {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         const isOpening = !card.classList.contains('is-open');
 
         allEventCards.forEach(otherCard => {
@@ -60,6 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
           card.classList.add('is-open');
           details.classList.add('open');
           btn.textContent = 'Less';
+          setTimeout(()=> {
+            card.scrollIntoView({behavior: 'smooth', block: 'start'});
+          }, 120);
         }
       });
     }
@@ -83,43 +85,48 @@ document.addEventListener('DOMContentLoaded', function () {
   const slides = document.querySelectorAll('.slide');
   const prevBtn = document.querySelector('.slider-btn.prev');
   const nextBtn = document.querySelector('.slider-btn.next');
+
+  if (!slider || !slides || slides.length === 0) return;
+
   let isManualControl = false;
   let currentIndex = 0;
-  const slideCount = slides.length / 2; 
+  const slideCount = Math.floor(slides.length / 2) || slides.length;
   let autoSlideInterval;
 
+  function getSlideWidth() {
+    const first = slides[0];
+    if (!first) return 0;
+    return first.getBoundingClientRect().width;
+  }
+
   function updateManualSlider() {
-    if (!slider || !slides || slides.length === 0) return;
-    const slideWidth = slides[0].clientWidth;
-    slider.style.transition = 'transform 0.5s ease-in-out'; 
-    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    if (!slider || slides.length === 0) return;
+    const slideWidth = getSlideWidth();
+    slider.style.transition = 'transform 0.5s ease-in-out';
+    const x = currentIndex * slideWidth;
+    slider.style.transform = `translateX(-${x}px)`;
   }
 
   function pauseMarquee() {
-    if (slider) {
-      slider.style.animationPlayState = 'paused';
-    }
+    if (slider) slider.style.animationPlayState = 'paused';
     isManualControl = true;
   }
 
   function startAutoSlide() {
-    if (slider) {
-        slider.style.animationPlayState = 'running';
-    }
+    if (slider) slider.style.animationPlayState = 'running';
     isManualControl = false;
   }
-
 
   if (sliderContainer && slider && prevBtn && nextBtn && slides.length > 0) {
     prevBtn.addEventListener('click', () => {
       pauseMarquee();
       currentIndex--;
       if (currentIndex < 0) {
-        slider.style.transition = 'none'; 
+        const slideWidth = getSlideWidth();
+        slider.style.transition = 'none';
         currentIndex = slideCount - 1;
-        const slideWidth = slides[0].clientWidth;
         slider.style.transform = `translateX(-${(currentIndex + slideCount) * slideWidth}px)`;
-        slider.offsetHeight; 
+        slider.offsetHeight;
         updateManualSlider();
       } else {
         updateManualSlider();
@@ -129,21 +136,21 @@ document.addEventListener('DOMContentLoaded', function () {
     nextBtn.addEventListener('click', () => {
       pauseMarquee();
       currentIndex++;
-       if (currentIndex >= slideCount) {
-        slider.style.transition = 'none'; 
-        const slideWidth = slides[0].clientWidth;
+      if (currentIndex >= slideCount) {
+        const slideWidth = getSlideWidth();
+        slider.style.transition = 'none';
         slider.style.transform = `translateX(-${(currentIndex - slideCount) * slideWidth}px)`;
-        slider.offsetHeight; 
-        currentIndex = 0; 
+        slider.offsetHeight;
+        currentIndex = 0;
         updateManualSlider();
       } else {
-          updateManualSlider();
+        updateManualSlider();
       }
     });
 
     window.addEventListener('resize', () => {
       if (isManualControl) {
-        updateManualSlider(); 
+        updateManualSlider();
       }
     });
   }
