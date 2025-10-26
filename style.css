@@ -33,6 +33,7 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  overscroll-behavior-y: none; 
 }
 
 .blobs {
@@ -440,3 +441,4 @@ h2 { font-size: 40px; }
   .committee-slider-section { margin-bottom: 24px; }
   .events-container { margin-top: 24px; }
 }
+
