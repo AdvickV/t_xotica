@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
         slider.style.animationPlayState = 'running';
     }
     isManualControl = false;
-    // Optional: Reset animation or position if needed after manual interaction
   }
 
 
