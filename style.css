@@ -43,7 +43,7 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: -1;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 @keyframes float {
@@ -131,6 +131,8 @@ body {
 
 main {
   padding: 0 24px;
+  z-index: 1;
+  position: relative;
 }
 
 .hero {
@@ -273,13 +275,13 @@ h2 { font-size: 40px; }
 
 @keyframes marquee {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } 
+  100% { transform: translateX(-50%); }
 }
 
 .slider {
   display: flex;
-  width: 2400%; 
-  animation: marquee 40s linear infinite; 
+  width: 2400%;
+  animation: marquee 40s linear infinite;
 }
 .slide { flex: 0 0 calc(100% / 24); text-align: center; padding: 0 10px;}
 .slide img { width: 100%; height: auto; display: block; border-radius: 15px; margin-bottom: 10px; aspect-ratio: 1 / 1; object-fit: cover;}
@@ -301,7 +303,7 @@ h2 { font-size: 40px; }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-  margin-top: 48px; 
+  margin-top: 48px;
   transition: grid-template-columns 0.5s ease;
 }
 .events-container.has-expanded-card {
@@ -364,11 +366,13 @@ h2 { font-size: 40px; }
     margin: 10px auto;
     border-radius: 50px;
     padding: 10px 20px;
+    position: relative; /* Changed from sticky to relative to fix overlap */
+    z-index: 10; /* Lower z-index than sticky, higher than blobs */
   }
-  main { padding: 0 16px; }
+  main { padding: 0 16px; margin-top: 20px; /* Added margin-top */ }
   .glass-card, .feature-card, .event-card { border-radius: 30px; padding: 30px; }
   .hero-title { font-size: 40px; }
-  
+
   .cta-row, .register-actions, .event-actions {
     display: flex;
     flex-direction: column;
@@ -381,7 +385,7 @@ h2 { font-size: 40px; }
   .stats {
       gap: 20px;
       flex-wrap: wrap;
-      justify-content: flex-start; 
+      justify-content: flex-start;
       align-items: flex-start;
   }
   .stat {
@@ -403,21 +407,27 @@ h2 { font-size: 40px; }
     display: none; position: absolute; top: calc(100% + 10px); right: 16px;
     background: var(--bg-1); border: 1px solid var(--glass-border); border-radius: 20px;
     padding: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 51; 
   }
   .nav-list.show { display: flex; flex-direction: column; gap: 5px }
 
   .committee-slider-section { padding: 30px; }
-  .slider-container { max-width: 90%; }
+  .slider-container { max-width: 100%; width: 100%; margin: 0 auto; }
+  .slide { padding: 0 5px; }
+  .slide img { aspect-ratio: auto; } 
   .slider-btn { font-size: 24px; padding: 8px 12px; }
-  .prev { left: 10px; }
-  .next { right: 10px; }
+  .prev { left: 5px; }
+  .next { right: 5px; }
 
   .quick-list li {
-      flex-wrap: wrap; 
+      flex-wrap: wrap;
   }
   .quick-list li span {
-      flex-basis: 100%; 
-      text-align: left; 
+      flex-basis: 100%;
+      text-align: left;
       margin-top: 4px;
+  }
+  .events-container {
+      grid-template-columns: 1fr;
   }
 }
