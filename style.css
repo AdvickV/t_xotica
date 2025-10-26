@@ -9,8 +9,6 @@
   --glass-bg: rgba(15, 10, 35, 0.5);
   --glass-border: rgba(255, 255, 255, 0.15);
   --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --header-height-desktop: calc(48px + 16px + 16px); /* Approx height + top margin + desired gap */
-  --header-height-mobile: calc(48px + 10px + 10px); /* Approx height + top margin + desired gap */
 }
 
 * {
@@ -36,7 +34,6 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding-top: var(--header-height-desktop); /* Added padding-top */
 }
 
 .blobs {
@@ -98,13 +95,11 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 12px 24px;
-  margin: 0 auto; /* Removed top/bottom margin */
+  margin: 16px auto;
   width: 95%;
   max-width: 1200px;
-  position: fixed; /* Changed to fixed for consistent positioning */
+  position: sticky;
   top: 16px;
-  left: 50%;
-  transform: translateX(-50%); /* Center fixed header */
   z-index: 50;
   background: rgba(10, 0, 31, 0.75);
   border-radius: 50px;
@@ -139,14 +134,13 @@ main {
   padding: 0 24px;
   z-index: 1;
   position: relative;
-  margin-top: 0; /* Removed margin-top */
+  margin-top: 32px;
 }
 
 .hero {
   position: relative;
   padding: 0 0 40px;
   display: flex; justify-content: center; align-items: center; min-height: auto;
-  /* Removed margin-top */
 }
 .hero-inner {
   display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px;
@@ -271,7 +265,6 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 32px;
-  /* Removed margin-top */
 }
 .note { margin-top: 24px; }
 .quick-list li {
@@ -304,10 +297,70 @@ h2 { font-size: 40px; }
   max-width: 1200px;
   margin: 0 auto;
   padding-bottom: 30px;
-  /* Removed margin-top */
 }
 
 .about-hero { margin-bottom: 32px; }
+
+.committee-slider-section { margin-bottom: 48px; padding: 40px; }
+.committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.slider {
+  display: flex;
+  width: calc(200px * 24);
+  animation: marquee 60s linear infinite;
+  will-change: transform;
+}
+.slider:hover {
+  animation-play-state: paused;
+}
+
+.slide {
+  flex: 0 0 200px;
+  text-align: center;
+  padding: 0 10px;
+  opacity: 0.7;
+  transition: opacity 0.5s ease;
+}
+.slide img {
+  width: 100%;
+  height: 200px; /* Fixed height */
+  display: block;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.slider-container:hover .slide {
+    opacity: 0.7;
+}
+.slider-container:hover .slide:hover {
+    opacity: 1;
+}
+
+.slide:nth-child(n+3):nth-child(-n+5),
+.slide:nth-child(n+15):nth-child(-n+17) {
+  opacity: 0.95;
+}
+
+
+.caption {
+    color: #FFF;
+    font-size: 16px;
+    margin-top: 5px;
+    font-weight: bold;
+}
 
 .events-container {
   display: grid;
@@ -364,9 +417,6 @@ h2 { font-size: 40px; }
   h2 { font-size: 32px; }
 }
 @media(max-width:760px) {
-  body {
-      padding-top: var(--header-height-mobile); /* Consistent padding for mobile */
-  }
   .blob { opacity: 0.3; }
   .b1 { width: 400px; height: 400px; }
   .b2 { width: 350px; height: 350px; }
@@ -375,16 +425,14 @@ h2 { font-size: 40px; }
   .site-header {
     width: 95%;
     top: 10px;
-    margin: 0 auto; /* Removed top/bottom margin */
+    margin: 10px auto;
     border-radius: 50px;
     padding: 10px 20px;
-    position: fixed; /* Keep fixed for mobile */
-    left: 50%;
-    transform: translateX(-50%);
+    position: sticky;
   }
   main {
       padding: 0 16px;
-      margin-top: 0; /* Remove margin, body padding handles it */
+      margin-top: 20px;
   }
   .glass-card, .feature-card, .event-card { border-radius: 30px; padding: 30px; }
   .hero-title { font-size: 40px; }
@@ -446,4 +494,30 @@ h2 { font-size: 40px; }
   .faq-grid {
       grid-template-columns: 1fr;
   }
+
+  .committee-slider-section { padding: 30px 0; }
+  .slider-container {
+      width: 100%;
+      max-width: 100%;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+  .slider {
+      width: calc(150px * 24);
+      animation-duration: 45s;
+  }
+  .slide {
+      flex: 0 0 150px;
+      padding: 0 5px;
+      opacity: 0.9;
+  }
+
+  .slide:nth-child(n+2):nth-child(-n+3),
+  .slide:nth-child(n+14):nth-child(-n+15) {
+     opacity: 1;
+  }
+  .slide img {
+      height: 150px;
+  }
+  .caption { font-size: 14px;}
 }
