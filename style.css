@@ -17,7 +17,7 @@
 
 html {
   background-color: var(--bg-1);
-  overscroll-behavior-y: contain; /* Add this line to prevent vertical overscroll/bounce */
+  overscroll-behavior-y: contain; 
 }
 body {
   margin: 0;
@@ -405,3 +405,4 @@ h2 { font-size: 40px; }
   }
   .about-hero { margin-bottom: 24px; }
 }
+
