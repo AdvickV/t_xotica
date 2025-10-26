@@ -95,7 +95,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 12px 24px;
-  margin: 16px auto; /* Keep margin for desktop */
+  margin: 16px auto;
   width: 95%;
   max-width: 1200px;
   position: sticky;
@@ -131,15 +131,15 @@ body {
 .nav-toggle { display: none; background: none; border: 0; color: var(--muted); font-size: 24px }
 
 main {
-  padding: 0 24px; /* Remove top padding from main */
+  padding: 0 24px;
   z-index: 1;
   position: relative;
-  margin-top: 32px; /* Consistent top margin for content below header */
+  margin-top: 32px;
 }
 
 .hero {
   position: relative;
-  padding: 0 0 40px; /* Reset top padding */
+  padding: 0 0 40px;
   display: flex; justify-content: center; align-items: center; min-height: auto;
 }
 .hero-inner {
@@ -195,12 +195,12 @@ h1,h2,h3,h4 { color: white; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(12
 .register-actions {
     display: flex;
     align-items: center;
-    gap: 16px; /* Adjusted gap */
+    gap: 16px;
     flex-wrap: wrap;
     margin-top: 32px;
 }
 .register-actions .help-link {
-    /* No margin-left needed, gap handles spacing */
+    /* No margin-left needed */
 }
 
 .stats { display: flex; gap: 32px; margin-top: 40px; }
@@ -260,7 +260,7 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
 .sponsor-strip p { font-size: 14px; }
 .register-page .big-hero {
   max-width: 1200px;
-  margin: 40px auto; /* Consistent top margin */
+  margin: 40px auto;
   padding: 0;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -295,22 +295,68 @@ h2 { font-size: 40px; }
 .faq-item h4 { margin: 0 0 8px; color: var(--accent-1); font-size: 20px; }
 .about-page {
   max-width: 1200px;
-  margin: 0 auto; /* Removed top margin */
+  margin: 0 auto;
   padding-bottom: 30px;
 }
 
 .about-hero { margin-bottom: 32px; }
+
+/* --- Committee Slider Styles --- */
+.committee-slider-section { margin-bottom: 48px; padding: 40px; }
+.committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.slider {
+  display: flex;
+  width: calc(200px * 24); 
+  animation: marquee 60s linear infinite; 
+  will-change: transform;
+}
+.slider:hover {
+  animation-play-state: paused;
+}
+
+.slide {
+  flex: 0 0 200px;
+  text-align: center;
+  padding: 0 10px;
+  opacity: 0.5; 
+  transition: opacity 0.5s ease;
+}
+.slide img {
+  width: 100%;
+  height: 200px;
+  display: block;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  object-fit: cover; 
+}
+.slide:nth-child(n+4):nth-child(-n+10), 
+.slide:nth-child(n+16):nth-child(-n+22) { 
+  opacity: 1;
+}
+
+.caption { color: var(--muted); font-size: 16px; margin-top: 5px; }
+
 
 .events-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
   margin-top: 48px;
-  transition: grid-template-columns 0.5s ease;
 }
-.events-container.has-expanded-card {
-  grid-template-columns: 1fr;
-}
+
 .event-card {
   display: flex;
   flex-direction: column;
@@ -436,4 +482,25 @@ h2 { font-size: 40px; }
   .faq-grid {
       grid-template-columns: 1fr;
   }
+
+  .committee-slider-section { padding: 30px 0; }
+  .slider-container {
+      width: 100%; 
+      max-width: 100%;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  }
+  .slider {
+      width: calc(150px * 24); 
+      animation-duration: 45s; 
+  }
+  .slide {
+      flex: 0 0 150px; 
+      padding: 0 5px;
+  }
+  .slide img {
+      height: 150px; 
+  }
+  .caption { font-size: 14px;}
+
 }
