@@ -266,20 +266,32 @@ h2 { font-size: 40px; }
 .faq-item h4 { margin: 0 0 8px; color: var(--accent-1); font-size: 20px; }
 .about-page { max-width: 1200px; margin: 40px auto; padding-bottom: 30px; }
 
-.committee-slider-section { margin-bottom: 32px; padding: 40px; }
+/* --- Committee Slider Styles --- */
+.committee-slider-section { margin-bottom: 48px; padding: 40px; }
 .committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
 .slider-container { position: relative; width: 100%; max-width: 400px; margin: 0 auto; overflow: hidden; border-radius: 20px;}
-.slider { display: flex; transition: transform 0.5s ease-in-out; }
-.slide { flex: 0 0 100%; text-align: center; }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Translate by half the total width */
+}
+
+.slider {
+  display: flex;
+  width: 2400%; /* 12 original slides + 12 duplicates = 24 * 100% */
+  animation: marquee 40s linear infinite; /* Adjust duration as needed */
+}
+.slide { flex: 0 0 calc(100% / 24); text-align: center; } /* Width for each slide */
 .slide img { width: 100%; height: auto; display: block; border-radius: 15px; margin-bottom: 10px; }
 .caption { color: var(--muted); font-size: 16px; margin-top: 5px; }
+
 .slider-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0.2); border: none;
-  color: white; font-size: 28px; font-weight: bold;
-  padding: 10px 15px; border-radius: 50%;
+  color: white; font-size: 32px; font-weight: bold;
+  padding: 12px 18px; border-radius: 50%;
   cursor: pointer; z-index: 10; transition: background-color 0.3s ease, transform 0.3s ease;
-  line-height: 1; /* Ensure vertical centering */
+  line-height: 1;
 }
 .slider-btn:hover { background-color: rgba(255, 255, 255, 0.3); transform: translateY(-50%) scale(1.1); }
 .prev { left: 15px; }
@@ -289,7 +301,7 @@ h2 { font-size: 40px; }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-  margin-top: 40px;
+  margin-top: 48px; /* Increased margin */
   transition: grid-template-columns 0.5s ease;
 }
 .events-container.has-expanded-card {
@@ -369,7 +381,7 @@ h2 { font-size: 40px; }
   .stats {
       gap: 20px;
       flex-wrap: wrap;
-      justify-content: flex-start; 
+      justify-content: flex-start;
       align-items: flex-start;
   }
   .stat {
@@ -396,4 +408,7 @@ h2 { font-size: 40px; }
 
   .committee-slider-section { padding: 30px; }
   .slider-container { max-width: 90%; }
+  .slider-btn { font-size: 24px; padding: 8px 12px; }
+  .prev { left: 10px; }
+  .next { right: 10px; }
 }
