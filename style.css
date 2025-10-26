@@ -269,6 +269,7 @@ h2 { font-size: 40px; }
 .faq-item h4 { margin: 0 0 8px; color: var(--accent-1); font-size: 20px; }
 .about-page { max-width: 1200px; margin: 40px auto; padding-bottom: 30px; }
 
+.about-hero { margin-bottom: 32px; }
 .committee-slider-section { margin-bottom: 48px; padding: 40px; }
 .committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
 .slider-container { position: relative; width: 100%; max-width: 400px; margin: 0 auto; overflow: hidden; border-radius: 20px;}
@@ -366,10 +367,10 @@ h2 { font-size: 40px; }
     margin: 10px auto;
     border-radius: 50px;
     padding: 10px 20px;
-    position: relative; /* Changed from sticky to relative to fix overlap */
-    z-index: 10; /* Lower z-index than sticky, higher than blobs */
+    position: sticky; 
   }
-  main { padding: 0 16px; margin-top: 20px; /* Added margin-top */ }
+  body { padding-top: 80px; }
+  main { padding: 0 16px; margin-top: 0; }
   .glass-card, .feature-card, .event-card { border-radius: 30px; padding: 30px; }
   .hero-title { font-size: 40px; }
 
@@ -407,17 +408,17 @@ h2 { font-size: 40px; }
     display: none; position: absolute; top: calc(100% + 10px); right: 16px;
     background: var(--bg-1); border: 1px solid var(--glass-border); border-radius: 20px;
     padding: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    z-index: 51; 
+    z-index: 51;
   }
   .nav-list.show { display: flex; flex-direction: column; gap: 5px }
 
   .committee-slider-section { padding: 30px; }
   .slider-container { max-width: 100%; width: 100%; margin: 0 auto; }
   .slide { padding: 0 5px; }
-  .slide img { aspect-ratio: auto; } 
+  .slide img { aspect-ratio: auto; }
   .slider-btn { font-size: 24px; padding: 8px 12px; }
-  .prev { left: 5px; }
-  .next { right: 5px; }
+  .prev { left: 5px; } 
+  .next { right: 5px; } 
 
   .quick-list li {
       flex-wrap: wrap;
@@ -430,4 +431,7 @@ h2 { font-size: 40px; }
   .events-container {
       grid-template-columns: 1fr;
   }
+  .about-hero { margin-bottom: 24px; }
+  .committee-slider-section { margin-bottom: 24px; }
+  .events-container { margin-top: 24px; }
 }
