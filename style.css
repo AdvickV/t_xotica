@@ -95,7 +95,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 12px 24px;
-  margin: 16px auto;
+  margin: 16px auto; /* Keep margin for desktop */
   width: 95%;
   max-width: 1200px;
   position: sticky;
@@ -131,15 +131,15 @@ body {
 .nav-toggle { display: none; background: none; border: 0; color: var(--muted); font-size: 24px }
 
 main {
-  padding: 0 24px; /* Removed top padding */
+  padding: 0 24px; /* Remove top padding from main */
   z-index: 1;
   position: relative;
-  margin-top: 32px; /* Added margin to push content below header area */
+  margin-top: 32px; /* Consistent top margin for content below header */
 }
 
 .hero {
   position: relative;
-  padding: 0 0 40px; /* Removed top padding */
+  padding: 0 0 40px; /* Reset top padding */
   display: flex; justify-content: center; align-items: center; min-height: auto;
 }
 .hero-inner {
@@ -195,12 +195,12 @@ h1,h2,h3,h4 { color: white; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(12
 .register-actions {
     display: flex;
     align-items: center;
-    gap: 24px; /* Increased gap */
+    gap: 16px; /* Adjusted gap */
     flex-wrap: wrap;
     margin-top: 32px;
 }
 .register-actions .help-link {
-    /* No margin-left: auto needed */
+    /* No margin-left needed, gap handles spacing */
 }
 
 .stats { display: flex; gap: 32px; margin-top: 40px; }
@@ -260,8 +260,7 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
 .sponsor-strip p { font-size: 14px; }
 .register-page .big-hero {
   max-width: 1200px;
-  /* Reduced top margin */
-  margin: 40px auto;
+  margin: 40px auto; /* Consistent top margin */
   padding: 0;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -296,8 +295,7 @@ h2 { font-size: 40px; }
 .faq-item h4 { margin: 0 0 8px; color: var(--accent-1); font-size: 20px; }
 .about-page {
   max-width: 1200px;
-  /* Adjusted top margin */
-  margin: 40px auto;
+  margin: 0 auto; /* Removed top margin */
   padding-bottom: 30px;
 }
 
@@ -354,7 +352,9 @@ h2 { font-size: 40px; }
   .events-container {
     grid-template-columns: 1fr;
   }
-  .hero { min-height: auto; padding: 60px 0 30px; }
+  .hero { min-height: auto; padding: 0 0 30px; }
+  .register-page .big-hero { margin: 30px auto; }
+  .about-page { margin: 0 auto; }
   .hero-title { font-size: 48px; }
   h2 { font-size: 32px; }
 }
@@ -373,14 +373,9 @@ h2 { font-size: 40px; }
     position: sticky;
   }
   main {
-      padding: 0 16px; /* Removed top padding */
-      margin-top: 20px; /* Reset margin */
+      padding: 0 16px;
+      margin-top: 20px;
   }
-  /* Ensure hero has correct top padding on mobile */
-  .hero { padding: 20px 0 30px; }
-  .register-page .big-hero { margin: 20px auto; }
-  .about-page { margin: 20px auto; }
-
   .glass-card, .feature-card, .event-card { border-radius: 30px; padding: 30px; }
   .hero-title { font-size: 40px; }
 
@@ -389,6 +384,9 @@ h2 { font-size: 40px; }
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
+  }
+  .register-actions .help-link {
+      margin-left: 0;
   }
   .btn {
       justify-content: center;
