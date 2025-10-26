@@ -200,7 +200,7 @@ h1,h2,h3,h4 { color: white; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(12
     margin-top: 32px;
 }
 .register-actions .help-link {
-    /* No margin-left needed */
+
 }
 
 .stats { display: flex; gap: 32px; margin-top: 40px; }
@@ -301,7 +301,6 @@ h2 { font-size: 40px; }
 
 .about-hero { margin-bottom: 32px; }
 
-/* --- Committee Slider Styles --- */
 .committee-slider-section { margin-bottom: 48px; padding: 40px; }
 .committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
 .slider-container {
@@ -319,8 +318,8 @@ h2 { font-size: 40px; }
 
 .slider {
   display: flex;
-  width: calc(200px * 24); 
-  animation: marquee 60s linear infinite; 
+  width: calc(200px * 24);
+  animation: marquee 60s linear infinite;
   will-change: transform;
 }
 .slider:hover {
@@ -331,7 +330,7 @@ h2 { font-size: 40px; }
   flex: 0 0 200px;
   text-align: center;
   padding: 0 10px;
-  opacity: 0.5; 
+  opacity: 0.7;
   transition: opacity 0.5s ease;
 }
 .slide img {
@@ -340,15 +339,28 @@ h2 { font-size: 40px; }
   display: block;
   border-radius: 15px;
   margin-bottom: 10px;
-  object-fit: cover; 
-}
-.slide:nth-child(n+4):nth-child(-n+10), 
-.slide:nth-child(n+16):nth-child(-n+22) { 
-  opacity: 1;
+  object-fit: cover;
 }
 
-.caption { color: var(--muted); font-size: 16px; margin-top: 5px; }
+.slider-container:hover .slide {
+    opacity: 0.7;
+}
+.slider-container:hover .slide:hover {
+    opacity: 1;
+}
 
+.slide:nth-child(n+3):nth-child(-n+5),
+.slide:nth-child(n+15):nth-child(-n+17) {
+  opacity: 0.95;
+}
+
+
+.caption {
+    color: #FFF;
+    font-size: 16px;
+    margin-top: 5px;
+    font-weight: bold;
+}
 
 .events-container {
   display: grid;
@@ -485,22 +497,27 @@ h2 { font-size: 40px; }
 
   .committee-slider-section { padding: 30px 0; }
   .slider-container {
-      width: 100%; 
+      width: 100%;
       max-width: 100%;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
       mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
   }
   .slider {
-      width: calc(150px * 24); 
-      animation-duration: 45s; 
+      width: calc(150px * 24);
+      animation-duration: 45s;
   }
   .slide {
-      flex: 0 0 150px; 
+      flex: 0 0 150px;
       padding: 0 5px;
+      opacity: 0.9;
+  }
+
+  .slide:nth-child(n+2):nth-child(-n+3),
+  .slide:nth-child(n+14):nth-child(-n+15) {
+     opacity: 1;
   }
   .slide img {
-      height: 150px; 
+      height: 150px;
   }
   .caption { font-size: 14px;}
-
 }
