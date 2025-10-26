@@ -42,28 +42,30 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         
-        const isOpening = !card.classList.contains('is-open');
+        const isOpening = !details.classList.contains('open');
 
         allEventCards.forEach(otherCard => {
-            otherCard.classList.remove('is-open');
+          if (otherCard !== card) {
             const otherDetails = otherCard.querySelector('.event-details');
-            if (otherDetails) {
-                 otherDetails.classList.remove('open');
+            if (otherDetails && otherDetails.classList.contains('open')) {
+              otherDetails.classList.remove('open');
+              otherCard.querySelector('.toggle-details').textContent = 'More';
+              otherCard.classList.remove('is-open'); 
             }
-            const otherBtn = otherCard.querySelector('.toggle-details');
-             if(otherBtn) {
-                 otherBtn.textContent = 'More';
-             }
+          }
         });
 
-        if (isOpening) {
-          card.classList.add('is-open');
-          details.classList.add('open');
-          btn.textContent = 'Less';
+        details.classList.toggle('open');
+        btn.textContent = isOpening ? 'Less' : 'More';
+        card.classList.toggle('is-open', isOpening);
+
+        if (eventsContainer) {
+           eventsContainer.classList.toggle('has-expanded-card', isOpening);
         }
       });
     }
   });
+
 
   const obs = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -78,73 +80,4 @@ document.addEventListener('DOMContentLoaded', function () {
     obs.observe(el);
   });
 
-  const sliderContainer = document.querySelector('.slider-container');
-  const slider = document.querySelector('.slider');
-  const slides = document.querySelectorAll('.slide');
-  const prevBtn = document.querySelector('.slider-btn.prev');
-  const nextBtn = document.querySelector('.slider-btn.next');
-  let isManualControl = false;
-  let currentIndex = 0;
-  const slideCount = slides.length / 2; 
-  let autoSlideInterval;
-
-  function updateManualSlider() {
-    if (!slider || !slides || slides.length === 0) return;
-    const slideWidth = slides[0].clientWidth;
-    slider.style.transition = 'transform 0.5s ease-in-out'; 
-    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-  }
-
-  function pauseMarquee() {
-    if (slider) {
-      slider.style.animationPlayState = 'paused';
-    }
-    isManualControl = true;
-  }
-
-  function startAutoSlide() {
-    if (slider) {
-        slider.style.animationPlayState = 'running';
-    }
-    isManualControl = false;
-  }
-
-
-  if (sliderContainer && slider && prevBtn && nextBtn && slides.length > 0) {
-    prevBtn.addEventListener('click', () => {
-      pauseMarquee();
-      currentIndex--;
-      if (currentIndex < 0) {
-        slider.style.transition = 'none'; 
-        currentIndex = slideCount - 1;
-        const slideWidth = slides[0].clientWidth;
-        slider.style.transform = `translateX(-${(currentIndex + slideCount) * slideWidth}px)`;
-        slider.offsetHeight; 
-        updateManualSlider();
-      } else {
-        updateManualSlider();
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      pauseMarquee();
-      currentIndex++;
-       if (currentIndex >= slideCount) {
-        slider.style.transition = 'none'; 
-        const slideWidth = slides[0].clientWidth;
-        slider.style.transform = `translateX(-${(currentIndex - slideCount) * slideWidth}px)`;
-        slider.offsetHeight; 
-        currentIndex = 0; 
-        updateManualSlider();
-      } else {
-          updateManualSlider();
-      }
-    });
-
-    window.addEventListener('resize', () => {
-      if (isManualControl) {
-        updateManualSlider(); 
-      }
-    });
-  }
 });
