@@ -134,12 +134,12 @@ main {
   padding: 0 24px;
   z-index: 1;
   position: relative;
-  margin-top: 32px;
+  margin-top: 32px; /* Consistent top margin */
 }
 
 .hero {
   position: relative;
-  padding: 0 0 40px;
+  padding: 0 0 40px; /* Reset top padding */
   display: flex; justify-content: center; align-items: center; min-height: auto;
 }
 .hero-inner {
@@ -200,7 +200,7 @@ h1,h2,h3,h4 { color: white; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(12
     margin-top: 32px;
 }
 .register-actions .help-link {
-
+    /* No margin needed */
 }
 
 .stats { display: flex; gap: 32px; margin-top: 40px; }
@@ -260,7 +260,7 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
 .sponsor-strip p { font-size: 14px; }
 .register-page .big-hero {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 0 auto; /* Removed specific top margin for desktop */
   padding: 0;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -307,8 +307,8 @@ h2 { font-size: 40px; }
     position: relative;
     width: 100%;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
 }
 
 @keyframes marquee {
@@ -330,7 +330,6 @@ h2 { font-size: 40px; }
   flex: 0 0 200px;
   text-align: center;
   padding: 0 10px;
-  opacity: 0.7;
   transition: opacity 0.5s ease;
 }
 .slide img {
@@ -341,20 +340,6 @@ h2 { font-size: 40px; }
   margin-bottom: 10px;
   object-fit: cover;
 }
-
-.slider-container:hover .slide {
-    opacity: 0.7;
-}
-.slider-container:hover .slide:hover {
-    opacity: 1;
-}
-
-.slide:nth-child(n+3):nth-child(-n+5),
-.slide:nth-child(n+15):nth-child(-n+17) {
-  opacity: 0.95;
-}
-
-
 .caption {
     color: #FFF;
     font-size: 16px;
@@ -499,8 +484,8 @@ h2 { font-size: 40px; }
   .slider-container {
       width: 100%;
       max-width: 100%;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   }
   .slider {
       width: calc(150px * 24);
