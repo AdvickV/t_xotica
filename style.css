@@ -337,6 +337,7 @@ h2 { font-size: 40px; }
   flex: 0 0 200px;
   text-align: center;
   padding: 0 10px;
+  transition: opacity 0.5s ease;
 }
 .slide img {
   width: 100%;
@@ -508,9 +509,11 @@ h2 { font-size: 40px; }
       flex: 0 0 150px;
       padding: 0 5px;
   }
+
   .slide img {
-      height: 150px;
-      max-height: none;
+      height: auto; 
+      max-height: 150px; 
+      aspect-ratio: 1 / 1; 
   }
   .caption { font-size: 14px;}
 }
