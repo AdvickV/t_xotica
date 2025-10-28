@@ -11,7 +11,8 @@
   --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --header-height-desktop: 72px;
   --header-height-mobile: 68px;
-  --header-gap: 32px;
+  --header-gap-desktop: 48px;
+  --header-gap-mobile: 32px;
 }
 
 * {
@@ -37,7 +38,6 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding-top: calc(var(--header-height-desktop) + var(--header-gap));
 }
 
 .blobs {
@@ -99,13 +99,11 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 12px 24px;
-  margin: 0 auto;
+  margin: 16px auto;
   width: 95%;
   max-width: 1200px;
-  position: fixed;
+  position: sticky;
   top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 50;
   background: rgba(10, 0, 31, 0.75);
   border-radius: 50px;
@@ -140,7 +138,7 @@ main {
   padding: 0 24px;
   z-index: 1;
   position: relative;
-  margin-top: 0;
+  margin-top: 32px;
 }
 
 .hero {
@@ -207,7 +205,6 @@ h1,h2,h3,h4 { color: white; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(12
     margin-top: 32px;
 }
 .register-actions .help-link {
-
 }
 
 .stats { display: flex; gap: 32px; margin-top: 40px; }
@@ -399,21 +396,21 @@ h2 { font-size: 40px; }
 .site-footer { text-align: center; padding: 20px 0; margin-top: auto; color: var(--muted); font-size: 14px; }
 
 @media (max-width: 920px) {
+  body {
+    padding-top: calc(var(--header-height-mobile) + var(--header-gap-mobile));
+  }
   .hero-inner, .register-page .big-hero { grid-template-columns: 1fr; gap: 24px; }
   .faq-grid { grid-template-columns: 1fr; }
   .events-container {
     grid-template-columns: 1fr;
   }
   .hero { min-height: auto; padding: 0 0 30px; }
-  .register-page .big-hero { margin: 30px auto; }
+  .register-page .big-hero { margin: 0 auto; }
   .about-page { margin: 0 auto; }
   .hero-title { font-size: 48px; }
   h2 { font-size: 32px; }
 }
 @media(max-width:760px) {
-  body {
-      padding-top: calc(var(--header-height-mobile) + var(--header-gap-mobile));
-  }
   .blob { opacity: 0.3; }
   .b1 { width: 400px; height: 400px; }
   .b2 { width: 350px; height: 350px; }
@@ -511,9 +508,10 @@ h2 { font-size: 40px; }
   }
 
   .slide img {
-      height: auto; 
-      max-height: 150px; 
-      aspect-ratio: 1 / 1; 
+      height: 150px;
+      max-height: none;
+      aspect-ratio: 1/1;
+      object-fit: cover;
   }
   .caption { font-size: 14px;}
 }
