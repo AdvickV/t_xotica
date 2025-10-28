@@ -9,8 +9,8 @@
   --glass-bg: rgba(15, 10, 35, 0.5);
   --glass-border: rgba(255, 255, 255, 0.15);
   --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --header-height-desktop: 72px; 
-  --header-height-mobile: 68px; 
+  --header-height-desktop: 72px;
+  --header-height-mobile: 68px;
   --header-gap: 32px;
 }
 
@@ -313,7 +313,10 @@ h2 { font-size: 40px; }
 .slider-container {
     position: relative;
     width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
     overflow: hidden;
+    border-radius: 20px;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
 }
@@ -498,22 +501,26 @@ h2 { font-size: 40px; }
   .slider-container {
       width: 100%;
       max-width: 100%;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: none;
+      mask-image: none;
+      overflow: visible; 
   }
   .slider {
-      width: calc(150px * 24);
-      animation-duration: 45s;
+      width: 100%;
+      animation: none;
+      position: relative;
+      height: 300px; 
   }
   .slide {
-      flex: 0 0 150px;
+      flex: 0 0 100%;
       padding: 0 5px;
+      width: 100%;
   }
   
   .slide img {
       width: 100%;
-      height: 150px;
-      max-height: 150px;
+      height: 300px;
+      max-height: 300px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
   }
