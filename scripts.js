@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const hrs = String(Math.floor((diff/(1000*60*60))%24)).padStart(2,'0');
       const mins = String(Math.floor((diff/(1000*60))%60)).padStart(2,'0');
       const secs = String(Math.floor((diff/1000)%60)).padStart(2,'0');
-
+      
       cd.innerHTML = `<div class="days">${days} <span class="label">Days</span></div>
                       <div class="time">${hrs}:${mins}:${secs}</div>`;
 
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const i = setInterval(tick,1000);
   }
 
-  const eventsContainer = document.querySelector('.events-container'); 
   const eventsContainer = document.querySelector('.events-container');
   const allEventCards = document.querySelectorAll('.event-card');
 
@@ -42,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (btn && details) {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-
+        
         const isOpening = !details.classList.contains('open'); 
 
         allEventCards.forEach(otherCard => {
@@ -62,6 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
         details.classList.toggle('open');
         btn.textContent = isOpening ? 'Less' : 'More';
         card.classList.toggle('is-open', isOpening); 
+
+        if (eventsContainer) {
+           eventsContainer.classList.toggle('has-expanded-card', isOpening);
+        }
       });
     }
   });
@@ -80,82 +83,4 @@ document.addEventListener('DOMContentLoaded', function () {
     obs.observe(el);
   });
 
-  const sliderContainer = document.querySelector('.slider-container');
-  const slider = document.querySelector('.slider');
-  const slides = document.querySelectorAll('.slide');
-  let isManualControl = false;
-  let currentIndex = 0;
-  const slideCount = slides.length / 2; 
-  let autoSlideInterval;
-  const originalSlideCount = slides.length / 2; 
-  let mobileSliderInterval;
-  let mobileCurrentIndex = 0;
-
-  function updateManualSlider() {
-  function setupSlider() {
-    if (!slider || !slides || slides.length === 0) return;
-    const slideWidth = slides[0].clientWidth;
-    slider.style.transition = 'transform 0.5s ease-in-out'; 
-    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-  }
-
-  function pauseMarquee() {
-    if (slider) {
-      slider.style.animationPlayState = 'paused';
-    }
-    isManualControl = true;
-  }
-    if (window.innerWidth <= 760) {
-      slider.style.animation = 'none'; 
-      slider.style.width = '100%'; 
-      slider.style.transform = `translateX(0px)`; 
-
-      slides.forEach((slide, index) => {
-        slide.style.opacity = index === 0 ? '1' : '0'; 
-        slide.style.position = index === 0 ? 'relative' : 'absolute'; 
-        slide.style.transition = 'opacity 0.5s ease-in-out';
-        slide.style.left = '0';
-        slide.style.top = '0';
-        slide.style.flex = '0 0 100%'; 
-      });
-
-  function startAutoSlide() {
-    if (slider) {
-        slider.style.animationPlayState = 'running';
-      if (mobileSliderInterval) clearInterval(mobileSliderInterval);
-      mobileSliderInterval = setInterval(() => {
-        slides[mobileCurrentIndex].style.opacity = '0';
-        slides[mobileCurrentIndex].style.position = 'absolute';
-
-        mobileCurrentIndex = (mobileCurrentIndex + 1) % originalSlideCount; 
-
-        slides[mobileCurrentIndex].style.opacity = '1';
-        slides[mobileCurrentIndex].style.position = 'relative';
-
-      }, 3000); 
-
-    } else {
-      if (mobileSliderInterval) clearInterval(mobileSliderInterval); 
-      slider.style.animation = `marquee 60s linear infinite`; 
-      slider.style.width = `calc(200px * ${slides.length})`;
-      slides.forEach(slide => {
-          slide.style.opacity = ''; 
-          slide.style.position = ''; 
-          slide.style.transition = ''; 
-          slide.style.left = '';
-          slide.style.top = '';
-          slide.style.flex = '0 0 200px'; 
-      });
-       slider.style.transform = `translateX(0px)`; 
-    }
-    isManualControl = false;
-  }
-
-  setupSlider(); 
-  window.addEventListener('resize', setupSlider); 
-
-  if (sliderContainer && slider && slides.length > 0) {
-    window.addEventListener('resize', () => {
-    });
-  }
 });
