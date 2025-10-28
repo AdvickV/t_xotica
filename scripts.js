@@ -57,3 +57,84 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
         });
+
+        details.classList.toggle('open');
+        btn.textContent = isOpening ? 'Less' : 'More';
+        card.classList.toggle('is-open', isOpening); 
+      });
+    }
+  });
+
+
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.1});
+
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+    obs.observe(el);
+  });
+
+  const sliderContainer = document.querySelector('.slider-container');
+  const slider = document.querySelector('.slider');
+  const slides = document.querySelectorAll('.slide');
+  let mobileSliderInterval;
+  let mobileCurrentIndex = 0;
+
+  function setupSlider() {
+    if (!slider || !slides || slides.length === 0) return;
+    const originalSlideCount = slides.length / 2; // We have duplicates
+
+    if (window.innerWidth <= 760) {
+      if (mobileSliderInterval) clearInterval(mobileSliderInterval);
+      
+      slider.style.animation = 'none';
+      slider.style.width = '100%';
+      slider.style.display = 'block'; 
+      slider.style.position = 'relative';
+
+      slides.forEach((slide, index) => {
+        slide.style.flex = '0 0 100%'; 
+        slide.style.opacity = index === 0 ? '1' : '0';
+        slide.style.position = index === 0 ? 'relative' : 'absolute';
+        slide.style.top = '0';
+        slide.style.left = '0';
+        slide.style.transition = 'opacity 0.5s ease-in-out';
+      });
+
+      mobileSliderInterval = setInterval(() => {
+        slides[mobileCurrentIndex].style.opacity = '0';
+        slides[mobileCurrentIndex].style.position = 'absolute';
+
+        mobileCurrentIndex = (mobileCurrentIndex + 1) % originalSlideCount;
+
+        slides[mobileCurrentIndex].style.opacity = '1';
+        slides[mobileCurrentIndex].style.position = 'relative';
+
+      }, 3000); 
+    } else {
+      if (mobileSliderInterval) clearInterval(mobileSliderInterval);
+      
+      slider.style.animation = `marquee 60s linear infinite`;
+      slider.style.width = `calc(200px * ${slides.length})`;
+      slider.style.display = 'flex';
+      slider.style.position = 'relative';
+
+      slides.forEach(slide => {
+        slide.style.flex = '0 0 200px';
+        slide.style.opacity = '';
+        slide.style.position = '';
+        slide.style.top = '';
+        slide.style.left = '';
+        slide.style.transition = 'opacity 0.5s ease';
+      });
+    }
+  }
+
+  setupSlider();
+  window.addEventListener('resize', setupSlider);
+});
