@@ -10,9 +10,6 @@
   --glass-border: rgba(255, 255, 255, 0.15);
   --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --header-height-desktop: 72px;
-  --header-height-mobile: 68px; 
-  --header-gap-desktop: 32px;
-  --header-gap-mobile: 20px; 
   --header-height-mobile: 68px;
   --header-gap: 32px;
 }
@@ -102,11 +99,9 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 12px 24px;
-  margin: 16px auto;
   margin: 0 auto;
   width: 95%;
   max-width: 1200px;
-  position: sticky;
   position: fixed;
   top: 16px;
   left: 50%;
@@ -145,7 +140,6 @@ main {
   padding: 0 24px;
   z-index: 1;
   position: relative;
-  margin-top: 32px;
   margin-top: 0;
 }
 
@@ -406,7 +400,7 @@ h2 { font-size: 40px; }
 
 @media (max-width: 920px) {
   body {
-    padding-top: calc(var(--header-height-mobile) + var(--header-gap-mobile));
+      padding-top: calc(var(--header-height-mobile) + var(--header-gap-mobile));
   }
   .hero-inner, .register-page .big-hero { grid-template-columns: 1fr; gap: 24px; }
   .faq-grid { grid-template-columns: 1fr; }
@@ -420,9 +414,6 @@ h2 { font-size: 40px; }
   h2 { font-size: 32px; }
 }
 @media(max-width:760px) {
-  body {
-      padding-top: 0; /* Remove desktop padding */
-  }
   .blob { opacity: 0.3; }
   .b1 { width: 400px; height: 400px; }
   .b2 { width: 350px; height: 350px; }
@@ -431,18 +422,15 @@ h2 { font-size: 40px; }
   .site-header {
     width: 95%;
     top: 10px;
-    margin: 10px auto;
     margin: 0 auto;
     border-radius: 50px;
     padding: 10px 20px;
-    position: sticky; /* Correct position for mobile */
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
   }
   main {
       padding: 0 16px;
-      margin-top: 20px; /* This creates the space below the sticky header */
       margin-top: 0;
   }
   .glass-card, .feature-card, .event-card { border-radius: 30px; padding: 30px; }
@@ -521,10 +509,11 @@ h2 { font-size: 40px; }
       flex: 0 0 150px;
       padding: 0 5px;
   }
+  
   .slide img {
       width: 100%;
       height: 150px;
-      max-height: none;
+      max-height: 150px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
   }
