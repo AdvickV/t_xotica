@@ -9,8 +9,8 @@
   --glass-bg: rgba(15, 10, 35, 0.5);
   --glass-border: rgba(255, 255, 255, 0.15);
   --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --header-height-desktop: 72px;
-  --header-height-mobile: 68px;
+  --header-height-desktop: 72px; 
+  --header-height-mobile: 68px; 
   --header-gap: 32px;
 }
 
@@ -509,10 +509,11 @@ h2 { font-size: 40px; }
       flex: 0 0 150px;
       padding: 0 5px;
   }
+  
   .slide img {
       width: 100%;
       height: 150px;
-      max-height: none;
+      max-height: 150px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
   }
