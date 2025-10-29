@@ -522,7 +522,6 @@ h2 { font-size: 40px; }
   }
 
   .committee-slider-section { padding: 30px 0; }
-
 }
 
 @media (max-width: 480px) {
@@ -563,4 +562,4 @@ h2 { font-size: 40px; }
   .event-body {
     padding: 20px;
   }
-  
+}
