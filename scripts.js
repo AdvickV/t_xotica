@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const handleCommitteeSlider = () => {
     const sliderContainer = document.querySelector('.slider-container');
-    const slider = document.querySelector('.slider'); 
+    const slider = document.querySelector('.slider');
     const mobileSlider = document.querySelector('.mobile-slider');
     const mobileSliderImg = document.querySelector('.mobile-slider-img');
     const mobileCaption = document.getElementById('mobile-caption');
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const showSlideshow = () => {
       if (slider) slider.classList.add('animation-stopped');
 
-      if (intervalId) clearInterval(intervalId);
+      if (intervalId) clearInterval(intervalId); 
       const nextImage = () => {
         if (imageUrls.length > 0) {
           mobileSliderImg.src = imageUrls[currentIndex];
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       };
       nextImage();
-      intervalId = setInterval(nextImage, 3000);
+      intervalId = setInterval(nextImage, 3000); 
     };
 
     const showMarquee = () => {
@@ -126,16 +126,9 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize();
-  };
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
+    handleResize(); 
   };
 
   handleCommitteeSlider();
 
 });
-
-
-
