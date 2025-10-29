@@ -11,7 +11,7 @@
   --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --header-height-desktop: 72px; 
   --header-height-mobile: 68px; 
-  --header-gap: 68px;
+  --header-gap: 64px;
   --header-gap-mobile: 45px;
 }
 
@@ -424,7 +424,9 @@ h2 { font-size: 40px; }
     display: block;
     text-align: center;
   }
-
+  .slider {
+    animation: none !important;
+  }
   .slider-container {
   display: none !important; 
   animation: none !important; 
@@ -555,6 +557,7 @@ h2 { font-size: 40px; }
   }
 }
 }
+
 
 
 
