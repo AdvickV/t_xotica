@@ -87,8 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const sliderContainer = document.querySelector('.slider-container');
     const mobileSlider = document.querySelector('.mobile-slider');
     const mobileSliderImg = document.querySelector('.mobile-slider-img');
-    const slides = document.querySelectorAll('.slide img');
-    const imageUrls = Array.from(slides).map(slide => slide.src);
+    const mobileCaption = document.getElementById('mobile-caption');
+    const slides = document.querySelectorAll('.slide');
+    const imageUrls = Array.from(slides).map(slide => slide.querySelector('img').src);
+    const captions = Array.from(slides).map(slide => slide.querySelector('.caption').textContent);
 
     let currentIndex = 0;
     let intervalId;
@@ -102,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const nextImage = () => {
         if (imageUrls.length > 0) {
           mobileSliderImg.src = imageUrls[currentIndex];
+          mobileCaption.textContent = captions[currentIndex];
           currentIndex = (currentIndex + 1) % imageUrls.length;
         }
       };
