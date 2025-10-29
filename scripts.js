@@ -83,4 +83,51 @@ document.addEventListener('DOMContentLoaded', function () {
     obs.observe(el);
   });
 
+  const handleCommitteeSlider = () => {
+    const sliderContainer = document.querySelector('.slider-container');
+    const mobileSlider = document.querySelector('.mobile-slider');
+    const mobileSliderImg = document.querySelector('.mobile-slider-img');
+    const slides = document.querySelectorAll('.slide img');
+    const imageUrls = Array.from(slides).map(slide => slide.src);
+
+    let currentIndex = 0;
+    let intervalId;
+
+    const showSlideshow = () => {
+      if (sliderContainer) sliderContainer.style.display = 'none';
+      if (mobileSlider) mobileSlider.style.display = 'block';
+
+      if (intervalId) clearInterval(intervalId);
+
+      const nextImage = () => {
+        if (imageUrls.length > 0) {
+          mobileSliderImg.src = imageUrls[currentIndex];
+          currentIndex = (currentIndex + 1) % imageUrls.length;
+        }
+      };
+
+      nextImage();
+      intervalId = setInterval(nextImage, 4000);
+    };
+
+    const showMarquee = () => {
+      if (sliderContainer) sliderContainer.style.display = 'block';
+      if (mobileSlider) mobileSlider.style.display = 'none';
+      if (intervalId) clearInterval(intervalId);
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth <= 760) {
+        showSlideshow();
+      } else {
+        showMarquee();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+  };
+
+  handleCommitteeSlider();
+
 });
