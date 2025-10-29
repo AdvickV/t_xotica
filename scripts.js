@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
       };
 
       nextImage();
-      intervalId = setInterval(nextImage, 4000);
+      intervalId = setInterval(nextImage, 3000);
     };
 
     const showMarquee = () => {
