@@ -424,13 +424,12 @@ h2 { font-size: 40px; }
     display: block;
     text-align: center;
   }
-  .slider {
+  .animation-stopped {
     animation: none !important;
   }
   .slider-container {
-  display: none !important; 
-  animation: none !important; 
-}
+  display: none;
+  }
 
   .mobile-slider .caption {
     margin-top: 10px;
@@ -557,6 +556,7 @@ h2 { font-size: 40px; }
   }
 }
 }
+
 
 
 
