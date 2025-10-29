@@ -96,8 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let intervalId;
 
     const showSlideshow = () => {
-      if (sliderContainer) sliderContainer.style.display = 'none';
-      if (mobileSlider) mobileSlider.style.display = 'block';
 
       if (intervalId) clearInterval(intervalId);
 
@@ -114,8 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const showMarquee = () => {
-      if (sliderContainer) sliderContainer.style.display = 'block';
-      if (mobileSlider) mobileSlider.style.display = 'none';
       if (intervalId) clearInterval(intervalId);
     };
 
@@ -134,3 +130,4 @@ document.addEventListener('DOMContentLoaded', function () {
   handleCommitteeSlider();
 
 });
+
