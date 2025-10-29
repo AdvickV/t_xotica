@@ -420,14 +420,15 @@ h2 { font-size: 40px; }
 }
 
 @media(max-width:760px) {
-  .slider-container {
-    display: none;
-  }
-
   .mobile-slider {
     display: block;
     text-align: center;
   }
+
+  .slider-container {
+  display: none !important; 
+  animation: none !important; 
+}
 
   .mobile-slider .caption {
     margin-top: 10px;
@@ -554,5 +555,6 @@ h2 { font-size: 40px; }
   }
 }
 }
+
 
 
