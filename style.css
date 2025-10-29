@@ -15,10 +15,6 @@
   --header-gap-mobile: 45px;
 }
 
-.animation-stopped {
-  animation: none !important;
-}
-
 * {
   box-sizing: border-box
 }
@@ -430,11 +426,14 @@ h2 { font-size: 40px; }
   }
 
   .slider-container {
-    display: none;
+    display: none !important;
+  }
+  .slider {
+    animation: none !important;
   }
 
   .mobile-slider {
-    display: block;
+    display: block !important;
     text-align: center;
   }
 
