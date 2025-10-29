@@ -419,6 +419,10 @@ h2 { font-size: 40px; }
   .b2 { width: 350px; height: 350px; }
   .b3 { width: 300px; height: 300px; bottom: 5%; left: -10%; }
 
+  body {
+    padding-top: calc(var(--header-height-mobile) + 20px);
+  }
+
   .site-header {
     width: 95%;
     top: 10px;
@@ -433,52 +437,68 @@ h2 { font-size: 40px; }
       padding: 0 16px;
       margin-top: 0;
   }
-  .glass-card, .feature-card, .event-card { border-radius: 30px; padding: 30px; }
-  .hero-title { font-size: 40px; }
+  .glass-card, .feature-card, .event-card { border-radius: 30px; padding: 24px; }
+  .hero-title { font-size: 36px; text-align: center; }
+  .school-mention { font-size: 16px; text-align: center; }
+  .lead { font-size: 18px; text-align: center; }
 
   .cta-row, .register-actions, .event-actions {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
+    gap: 12px;
   }
   .register-actions .help-link {
       margin-left: 0;
   }
   .btn {
       justify-content: center;
+      padding: 14px 24px;
+      font-size: 15px;
+      width: 100%;
   }
   .stats {
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: space-around;
       align-items: flex-start;
   }
   .stat {
-      align-items: flex-start;
-      text-align: left;
+      align-items: center;
+      text-align: center;
+      flex: 1 1 auto;
+      min-width: 100px;
   }
   .stat .num {
-      font-size: 24px;
+      font-size: 20px;
   }
   .stat .label {
-      font-size: 14px;
+      font-size: 13px;
   }
 
-  #countdown .days { font-size: 80px; }
-  #countdown .days .label { font-size: 16px; margin-top: 0; }
-  #countdown .time { font-size: 24px; }
-  .nav-toggle { display: block }
+  #countdown .days { font-size: 72px; }
+  #countdown .days .label { font-size: 15px; margin-top: 0; }
+  #countdown .time { font-size: 22px; }
+  .nav-toggle { display: block; cursor: pointer; }
   .nav-list {
     display: none; position: absolute; top: calc(100% + 10px); right: 16px;
     background: var(--bg-1); border: 1px solid var(--glass-border); border-radius: 20px;
     padding: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     z-index: 51;
+    min-width: 150px;
   }
   .nav-list.show { display: flex; flex-direction: column; gap: 5px }
+  .nav-list li { width: 100%; }
+  .nav-list a { display: block; width: 100%; text-align: center; }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 
   .quick-list li {
       flex-wrap: wrap;
+      gap: 8px;
   }
   .quick-list li span {
       flex-basis: 100%;
@@ -488,13 +508,15 @@ h2 { font-size: 40px; }
   .events-container {
       grid-template-columns: 1fr;
       margin-top: 24px;
+      gap: 24px;
   }
   .about-hero { margin-bottom: 24px; }
   .faq-grid {
       grid-template-columns: 1fr;
+      gap: 20px;
   }
 
-  .committee-slider-section { padding: 30px 0; }
+  .committee-slider-section { padding: 24px; margin-bottom: 32px; }
   .slider-container {
       width: 100%;
       max-width: 100%;
@@ -509,7 +531,7 @@ h2 { font-size: 40px; }
       flex: 0 0 150px;
       padding: 0 5px;
   }
-  
+
   .slide img {
       width: 100%;
       height: 150px;
@@ -517,5 +539,41 @@ h2 { font-size: 40px; }
       aspect-ratio: 1 / 1;
       object-fit: cover;
   }
-  .caption { font-size: 14px;}
+  .caption { font-size: 13px;}
+
+  .logo-text { font-size: 15px; }
+  .logo-mark-bg { width: 42px; height: 42px; }
+
+  .benefits li { font-size: 16px; margin-bottom: 10px; }
+  .note { font-size: 14px; }
+
+  .event-body { padding: 24px; }
+  .event-body h2 { font-size: 26px; margin-bottom: 12px; }
+  .event-body .meta, .event-body .heads, .event-body .teacher { font-size: 15px; }
+  .event-details h4 { font-size: 18px; margin-top: 16px; }
+  .event-details ul { padding-left: 20px; }
+  .event-details li { margin-bottom: 8px; font-size: 15px; }
+
+  h2 { font-size: 28px; }
+  h3 { font-size: 22px; }
+
+  .sponsor-strip h3 { font-size: 20px; }
+  .sponsor-strip p { font-size: 13px; }
+}
+
+@media(max-width:480px) {
+  .hero-title { font-size: 32px; }
+  .glass-card, .feature-card, .event-card { padding: 20px; }
+  #countdown .days { font-size: 60px; }
+  #countdown .time { font-size: 18px; }
+  .btn { padding: 12px 20px; font-size: 14px; }
+  .stats { gap: 12px; }
+  .stat .num { font-size: 18px; }
+  .stat .label { font-size: 12px; }
+  .logo-text { font-size: 14px; }
+  .logo-mark-bg { width: 38px; height: 38px; }
+  .slide { flex: 0 0 120px; }
+  .slider { width: calc(120px * 24); animation-duration: 40s; }
+  .slide img { height: 120px; }
+  .caption { font-size: 12px; }
 }
