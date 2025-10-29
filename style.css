@@ -327,10 +327,6 @@ h2 { font-size: 40px; }
   animation: marquee 60s linear infinite;
   will-change: transform;
 }
-.slider:hover {
-  animation-play-state: paused;
-}
-
 .slide {
   flex: 0 0 200px;
   text-align: center;
@@ -588,3 +584,4 @@ h2 { font-size: 40px; }
   }
 }
 }
+
