@@ -58,7 +58,7 @@ allEventCards.forEach(card => {
       });
 
       details.classList.toggle('open');
-      btn.textContent =.isOpening ? 'Less' : 'More';
+      btn.textContent = isOpening ? 'Less' : 'More';
       card.classList.toggle('is-open', isOpening); 
 
       if (eventsContainer) {
@@ -84,7 +84,7 @@ document.querySelectorAll('.reveal-on-scroll').forEach(el => {
 
 const handleCommitteeSlider = () => {
   const sliderContainer = document.querySelector('.slider-container');
-  const slider = document.querySelector('.slider');
+  const slider = document.querySelector('.slider'); 
   const mobileSlider = document.querySelector('.mobile-slider');
   const mobileSliderImg = document.querySelector('.mobile-slider-img');
   const mobileCaption = document.getElementById('mobile-caption');
@@ -111,8 +111,8 @@ const handleCommitteeSlider = () => {
         currentIndex = (currentIndex + 1) % imageUrls.length;
       }
     };
-    nextImage(); 
-    intervalId = setInterval(nextImage, 3000); 
+    nextImage();
+    intervalId = setInterval(nextImage, 3000);
   };
 
   const showMarquee = () => {
