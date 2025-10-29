@@ -83,49 +83,45 @@ document.querySelectorAll('.reveal-on-scroll').forEach(el => {
 });
 
 const handleCommitteeSlider = () => {
-  const sliderContainer = document.querySelector('.slider-container');
-  const slider = document.querySelector('.slider'); 
   const mobileSlider = document.querySelector('.mobile-slider');
   const mobileSliderImg = document.querySelector('.mobile-slider-img');
   const mobileCaption = document.getElementById('mobile-caption');
-  const slides = document.querySelectorAll('.slide');
-  
-  if (!slider || !mobileSliderImg || !mobileCaption) {
-    return;
+  const slides = document.querySelectorAll('.slide'); 
+
+  if (!mobileSlider || !mobileSliderImg || !mobileCaption || slides.length === 0) {
+    return; 
   }
 
   const imageUrls = Array.from(slides).map(slide => slide.querySelector('img').src);
   const captions = Array.from(slides).map(slide => slide.querySelector('.caption').textContent);
-
   let currentIndex = 0;
-  let intervalId;
+  let intervalId = null; 
 
-  const showSlideshow = () => {
-    if (slider) slider.classList.add('animation-stopped');
+  const startMobileSlideshow = () => {
+    if (intervalId) return; 
 
-    if (intervalId) clearInterval(intervalId); 
     const nextImage = () => {
-      if (imageUrls.length > 0) {
-        mobileSliderImg.src = imageUrls[currentIndex];
-        mobileCaption.textContent = captions[currentIndex];
-        currentIndex = (currentIndex + 1) % imageUrls.length;
-      }
+      mobileSliderImg.src = imageUrls[currentIndex];
+      mobileCaption.textContent = captions[currentIndex];
+      currentIndex = (currentIndex + 1) % imageUrls.length;
     };
-    nextImage();
+    
+    nextImage(); 
     intervalId = setInterval(nextImage, 3000);
   };
 
-  const showMarquee = () => {
-    if (intervalId) clearInterval(intervalId);
-
-    if (slider) slider.classList.remove('animation-stopped');
+  const stopMobileSlideshow = () => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
   };
 
   const handleResize = () => {
     if (window.innerWidth <= 760) {
-      showSlideshow();
+      startMobileSlideshow();
     } else {
-      showMarquee();
+      stopMobileSlideshow();
     }
   };
 
