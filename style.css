@@ -11,7 +11,8 @@
   --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --header-height-desktop: 72px; 
   --header-height-mobile: 68px; 
-  --header-gap: 32px;
+  --header-gap: 68px;
+  --header-gap-mobile: 45px;
 }
 
 * {
@@ -140,7 +141,6 @@ main {
   padding: 0 24px;
   z-index: 1;
   position: relative;
-  margin-top: 0;
 }
 
 .hero {
@@ -308,7 +308,7 @@ h2 { font-size: 40px; }
 
 .about-hero { margin-bottom: 32px; }
 
-.committee-slider-section { margin-bottom: 48px; padding: 40px; }
+.committee-slider-section { margin-bottom: 48px; padding: 40px; overflow: hidden; }
 .committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
 .slider-container {
     position: relative;
@@ -316,6 +316,7 @@ h2 { font-size: 40px; }
     overflow: hidden;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    padding: 0 20px;
 }
 
 @keyframes marquee {
@@ -413,15 +414,31 @@ h2 { font-size: 40px; }
   .hero-title { font-size: 48px; }
   h2 { font-size: 32px; }
 }
+.caption { font-size: 14px;}
+
+.mobile-slider {
+  display: none;
+}
+
+.mobile-slider-img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
 @media(max-width:760px) {
+  .slider-container {
+    display: none;
+  }
+
+  .mobile-slider {
+    display: block;
+  }
+
   .blob { opacity: 0.3; }
   .b1 { width: 400px; height: 400px; }
   .b2 { width: 350px; height: 350px; }
   .b3 { width: 300px; height: 300px; bottom: 5%; left: -10%; }
-
-  body {
-    padding-top: calc(var(--header-height-mobile) + 20px);
-  }
 
   .site-header {
     width: 95%;
@@ -435,70 +452,53 @@ h2 { font-size: 40px; }
   }
   main {
       padding: 0 16px;
-      margin-top: 0;
   }
-  .glass-card, .feature-card, .event-card { border-radius: 30px; padding: 24px; }
-  .hero-title { font-size: 36px; text-align: center; }
-  .school-mention { font-size: 16px; text-align: center; }
-  .lead { font-size: 18px; text-align: center; }
+  .glass-card, .feature-card, .event-card { border-radius: 30px; padding: 30px; }
+  .hero-title { font-size: 40px; }
 
   .cta-row, .register-actions, .event-actions {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
+    gap: 16px;
   }
   .register-actions .help-link {
       margin-left: 0;
   }
   .btn {
       justify-content: center;
-      padding: 14px 24px;
-      font-size: 15px;
-      width: 100%;
   }
   .stats {
-      gap: 16px;
+      gap: 20px;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: flex-start;
       align-items: flex-start;
   }
   .stat {
-      align-items: center;
-      text-align: center;
-      flex: 1 1 auto;
-      min-width: 100px;
+      align-items: flex-start;
+      text-align: left;
   }
   .stat .num {
-      font-size: 20px;
+      font-size: 24px;
   }
   .stat .label {
-      font-size: 13px;
+      font-size: 14px;
   }
 
-  #countdown .days { font-size: 72px; }
-  #countdown .days .label { font-size: 15px; margin-top: 0; }
-  #countdown .time { font-size: 22px; }
-  .nav-toggle { display: block; cursor: pointer; }
+  #countdown .days { font-size: 80px; }
+  #countdown .days .label { font-size: 16px; margin-top: 0; }
+  #countdown .time { font-size: 24px; }
+  .nav-toggle { display: block }
   .nav-list {
     display: none; position: absolute; top: calc(100% + 10px); right: 16px;
     background: var(--bg-1); border: 1px solid var(--glass-border); border-radius: 20px;
     padding: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     z-index: 51;
-    min-width: 150px;
   }
   .nav-list.show { display: flex; flex-direction: column; gap: 5px }
-  .nav-list li { width: 100%; }
-  .nav-list a { display: block; width: 100%; text-align: center; }
-
-  .feature-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
 
   .quick-list li {
       flex-wrap: wrap;
-      gap: 8px;
   }
   .quick-list li span {
       flex-basis: 100%;
@@ -508,15 +508,13 @@ h2 { font-size: 40px; }
   .events-container {
       grid-template-columns: 1fr;
       margin-top: 24px;
-      gap: 24px;
   }
   .about-hero { margin-bottom: 24px; }
   .faq-grid {
       grid-template-columns: 1fr;
-      gap: 20px;
   }
 
-  .committee-slider-section { padding: 24px; margin-bottom: 32px; }
+  .committee-slider-section { padding: 30px 0; }
   .slider-container {
       width: 100%;
       max-width: 100%;
@@ -524,56 +522,67 @@ h2 { font-size: 40px; }
       mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   }
   .slider {
-      width: calc(150px * 24);
+      width: calc(100px * 24);
       animation-duration: 45s;
   }
   .slide {
-      flex: 0 0 150px;
+      flex: 0 0 100px;
       padding: 0 5px;
   }
-
+  
   .slide img {
       width: 100%;
-      height: 150px;
+      height: 100px;
       max-height: none;
       aspect-ratio: 1 / 1;
       object-fit: cover;
   }
-  .caption { font-size: 13px;}
 
-  .logo-text { font-size: 15px; }
-  .logo-mark-bg { width: 42px; height: 42px; }
+@media (max-width: 480px) {
+  .glass-card, .feature-card, .event-card {
+    border-radius: 20px;
+    padding: 20px;
+  }
 
-  .benefits li { font-size: 16px; margin-bottom: 10px; }
-  .note { font-size: 14px; }
+  .hero-title {
+    font-size: 32px;
+  }
 
-  .event-body { padding: 24px; }
-  .event-body h2 { font-size: 26px; margin-bottom: 12px; }
-  .event-body .meta, .event-body .heads, .event-body .teacher { font-size: 15px; }
-  .event-details h4 { font-size: 18px; margin-top: 16px; }
-  .event-details ul { padding-left: 20px; }
-  .event-details li { margin-bottom: 8px; font-size: 15px; }
+  .lead {
+    font-size: 16px;
+  }
 
-  h2 { font-size: 28px; }
-  h3 { font-size: 22px; }
+  .btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
 
-  .sponsor-strip h3 { font-size: 20px; }
-  .sponsor-strip p { font-size: 13px; }
+  #countdown .days {
+    font-size: 60px;
+  }
+
+  #countdown .time {
+    font-size: 20px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-actions {
+    flex-direction: column;
+  }
+
+  .event-body {
+    padding: 20px;
+  }
+
+  .slider {
+    width: calc(120px * 24);
+  }
+
+  .slide {
+    flex: 0 0 120px;
+  }
 }
-
-@media(max-width:480px) {
-  .hero-title { font-size: 32px; }
-  .glass-card, .feature-card, .event-card { padding: 20px; }
-  #countdown .days { font-size: 60px; }
-  #countdown .time { font-size: 18px; }
-  .btn { padding: 12px 20px; font-size: 14px; }
-  .stats { gap: 12px; }
-  .stat .num { font-size: 18px; }
-  .stat .label { font-size: 12px; }
-  .logo-text { font-size: 14px; }
-  .logo-mark-bg { width: 38px; height: 38px; }
-  .slide { flex: 0 0 120px; }
-  .slider { width: calc(120px * 24); animation-duration: 40s; }
-  .slide img { height: 120px; }
-  .caption { font-size: 12px; }
 }
