@@ -424,6 +424,11 @@ h2 { font-size: 40px; }
 }
 
 @media(max-width:760px) {
+  .reveal-on-scroll {
+  opacity: 1 !important;
+  transform: none !important;
+  }
+  
   .slider-container {
     display: none;
   }
@@ -588,3 +593,4 @@ h2 { font-size: 40px; }
   }
 }
 }
+
