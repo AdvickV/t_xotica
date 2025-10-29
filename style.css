@@ -206,9 +206,6 @@ h1,h2,h3,h4 { color: white; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(12
     flex-wrap: wrap;
     margin-top: 32px;
 }
-.register-actions .help-link {
-
-}
 
 .stats { display: flex; gap: 32px; margin-top: 40px; }
 .stat .num { font-size: 28px; font-weight: 700; color: white; }
@@ -433,6 +430,11 @@ h2 { font-size: 40px; }
 
   .mobile-slider {
     display: block;
+    text-align: center;
+  }
+
+  .mobile-slider .caption {
+    margin-top: 10px;
   }
 
   .blob { opacity: 0.3; }
