@@ -305,9 +305,7 @@ h2 { font-size: 40px; }
 
 .about-hero { margin-bottom: 32px; }
 
-  .committee-slider-section { margin-bottom: 48px; padding: 40px; overflow: hidden; text-align: center; }
-
-
+.committee-slider-section { margin-bottom: 48px; padding: 40px; overflow: hidden; }
 .committee-slider-section h2 { text-align: center; margin-bottom: 24px; }
 .slider-container {
     position: relative;
@@ -415,46 +413,24 @@ h2 { font-size: 40px; }
 }
 .caption { font-size: 14px;}
 
-      .mobile-slider {
+.mobile-slider {
+  display: none;
+}
 
-        display: block;
+.mobile-slider-img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
 
-        height: 100%;
-
-        overflow: hidden;
-
-        position: relative;
-
-      }
-
-    
-
-      .mobile-slider-img {
-
-        width: 100%;
-
-        height: 100%;
-
-        object-fit: cover;
-
-        border-radius: 15px;
-
-        position: absolute;
-
-        left: 0;
-
-        top: 0;
-
-      }
-
-    
-  @media(max-width:760px) {
+@media(max-width:760px) {
   .slider-container {
     display: none;
   }
 
   .mobile-slider {
     display: block;
+    text-align: center;
   }
 
   .mobile-slider .caption {
@@ -540,7 +516,7 @@ h2 { font-size: 40px; }
       grid-template-columns: 1fr;
   }
 
-  .committee-slider-section { padding: 30px 0; height: 300px; }
+  .committee-slider-section { padding: 30px 0; }
   .slider-container {
       width: 100%;
       max-width: 100%;
@@ -558,8 +534,9 @@ h2 { font-size: 40px; }
   
   .slide img {
       width: 100%;
-          height: 100px;
-          max-height: none;      aspect-ratio: 1 / 1;
+      height: 100px;
+      max-height: none;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
   }
 
