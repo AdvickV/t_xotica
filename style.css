@@ -282,6 +282,22 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
 .quick-list li strong::after {
   content: ":";
 }
+/* --- NEW STYLES START --- */
+.glass-card.reg-panel {
+  display: flex;
+  flex-direction: column;
+}
+.glass-card.reg-panel .quick-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.quick-list li span a {
+  color: inherit;
+  text-decoration: none;
+}
+/* --- NEW STYLES END --- */
 .benefits li { margin-bottom: 12px; font-size: 18px; }
 h2 { font-size: 40px; }
 .faq-section { max-width: 1200px; margin: 0 auto 30px; text-align: center; }
@@ -401,6 +417,15 @@ h2 { font-size: 40px; }
   .about-page { margin: 0 auto; }
   .hero-title { font-size: 48px; }
   h2 { font-size: 32px; }
+  /* --- NEW STYLES START --- */
+  .glass-card.reg-panel {
+    display: block; /* Reset from flex */
+  }
+  .glass-card.reg-panel .quick-list {
+    flex-grow: 0; /* Reset from grow */
+    justify-content: flex-start; /* Reset from space-around */
+  }
+  /* --- NEW STYLES END --- */
 }
 .caption { font-size: 14px;}
 
@@ -498,14 +523,24 @@ h2 { font-size: 40px; }
   }
   .nav-list.show { display: flex; flex-direction: column; gap: 5px }
 
+  /* --- MODIFIED STYLES START --- */
   .quick-list li {
-      flex-wrap: wrap;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      flex-wrap: nowrap; 
+  }
+  .quick-list li:last-child {
+      margin-bottom: 0;
   }
   .quick-list li span {
-      flex-basis: 100%;
+      flex-basis: auto;
       text-align: left;
       margin-top: 4px;
   }
+  /* --- MODIFIED STYLES END --- */
   .detail-1::after {
   content: ":";
 	}
