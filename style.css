@@ -271,10 +271,14 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
   gap: 32px;
 }
 .note { margin-top: 24px; }
+
+.quick-list {
+  padding-left: 0;
+}
 .quick-list li {
   display: flex;
   justify-content: space-between;
-  align-items: left;
+  align-items: center; 
 }
 .quick-list li span {
   text-align: left;
@@ -286,6 +290,9 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
   display: flex;
   flex-direction: column;
 }
+.glass-card.reg-panel h3 {
+  text-align: left; 
+}
 .glass-card.reg-panel .quick-list {
   flex-grow: 1;
   display: flex;
@@ -296,6 +303,7 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
   color: inherit;
   text-decoration: none;
 }
+
 .benefits li { margin-bottom: 12px; font-size: 18px; }
 h2 { font-size: 40px; }
 .faq-section { max-width: 1200px; margin: 0 auto 30px; text-align: center; }
@@ -374,10 +382,11 @@ h2 { font-size: 40px; }
   margin-bottom: 12px;
 }
 .credit-name {
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 40px; 
+  font-weight: 700; 
   color: white;
   margin: 0;
+  text-shadow: 0 0 15px var(--accent-3), 0 0 25px var(--accent-3); 
 }
 
 
@@ -548,11 +557,11 @@ h2 { font-size: 40px; }
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      align-items: flex-start;
+      align-items: flex-start; 
       margin-bottom: 16px;
       flex-wrap: nowrap; 
   }
-  .quick-list li:last-.child {
+  .quick-list li:last-child {
       margin-bottom: 0;
   }
   .quick-list li span {
@@ -585,7 +594,7 @@ h2 { font-size: 40px; }
     font-size: 20px;
   }
   .credit-name {
-    font-size: 24px;
+    font-size: 32px; 
   }
 }
 
@@ -629,6 +638,6 @@ h2 { font-size: 40px; }
   }
   
   .credit-name {
-    font-size: 22px; 
+    font-size: 28px; 
   }
 }
