@@ -275,7 +275,6 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
 }
 .quick-list li span {
   text-align: right;
