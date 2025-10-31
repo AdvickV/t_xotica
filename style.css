@@ -278,10 +278,8 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
 }
 .quick-list li span {
   text-align: right;
-  flex-shrink: 1;
 }
 .quick-list li strong {
-  flex-shrink: 0;
 }
 .quick-list li strong::after {
   content: ":";
