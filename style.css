@@ -511,6 +511,13 @@ h2 { font-size: 40px; }
       text-align: left;
       margin-top: 4px;
   }
+  .detail-1::after {
+  content: ":";
+	}
+
+	.detail-2::after {
+  content: ":";
+	}
   .events-container {
       grid-template-columns: 1fr;
       margin-top: 24px;
