@@ -208,7 +208,7 @@ h1,h2,h3,h4 { color: white; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(12
 }
 
 .stats { display: flex; gap: 32px; margin-top: 40px; }
-.stat .num { font-size: 28px; font-weight: 700; color: white; }
+.stat .num { font-size: 24px; font-weight: 700; color: white; }
 .stat .label { font-size: 16px; color: var(--muted); }
 
 .hero-panel { display: flex; align-items: center; justify-content: center; }
