@@ -283,7 +283,7 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
 .quick-list li span {
   text-align: left;
 }
-.quick-list li strong::after {
+.quick-list-d strong::after {
   content: ":";
 }
 .glass-card.reg-panel {
