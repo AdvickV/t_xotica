@@ -283,9 +283,7 @@ a.event-link { text-decoration: none; color: inherit; display: block; }
 .quick-list li span {
   text-align: left;
 }
-.quick-list-d strong::after {
-  content: ":";
-}
+
 .glass-card.reg-panel {
   display: flex;
   flex-direction: column;
@@ -569,13 +567,7 @@ h2 { font-size: 40px; }
       text-align: left;
       margin-top: 4px;
   }
-  .detail-1::after {
-  content: ":";
-	}
-
-	.detail-2::after {
-  content: ":";
-	}
+  
   .events-container {
       grid-template-columns: 1fr;
       margin-top: 24px;
